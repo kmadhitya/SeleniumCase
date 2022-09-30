@@ -8,12 +8,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TC007_CreateLead {
 
-	public static void main(String[] args) throws InterruptedException {
+	@Test
+	public void createLeadTC07() throws InterruptedException {
 		// TODO Auto-generated method stub
 		String url = "https://login.salesforce.com/";
 		String username = "hari.radhakrishnan@qeagle.com";
@@ -56,7 +58,7 @@ public class TC007_CreateLead {
 
 		Thread.sleep(3000);
 		
-		driver.close();
+		driver.quit();
 		
 	}
 

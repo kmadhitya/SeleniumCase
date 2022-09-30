@@ -8,30 +8,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class TC005_EditAccount {
+public class TC005_EditAccount extends Base {
 
-	public static void main(String[] args) throws InterruptedException {
-		// TODO Auto-generated method stub
-		
-		String url = "https://login.salesforce.com/";
-		String username = "hari.radhakrishnan@qeagle.com";
-		String pwd = "India$321";
-		//System.setProperty("webdriver.chrome.drive", "./drivers/chromedriver");
-		WebDriverManager.chromedriver().setup();
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--disable-notifications");
-		ChromeDriver driver = new ChromeDriver(options);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		
-		driver.navigate().to(url);
-		driver.manage().window().maximize();
-		driver.findElement(By.id("username")).sendKeys(username);
-		driver.findElement(By.id("password")).sendKeys(pwd);
-		driver.findElement(By.id("Login")).click();
-		Thread.sleep(5000);
+	@Test
+	public void editAccountTC05() throws InterruptedException {
 		WebElement appLauncher = driver.findElement(By.xpath("//div[@role='navigation']/button/div"));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", appLauncher);
@@ -105,11 +89,7 @@ public class TC005_EditAccount {
 		
 		Assert.assertEquals(actualText, "Technology Partner");
 		
-		driver.close();
-		
-		
-		
-
+		driver.quit();
 	}
 
 }

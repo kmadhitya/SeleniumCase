@@ -10,29 +10,15 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class TC001_CreateOpportunity {
+public class TC001_CreateOpportunity extends Base {
 	
-	public static void main(String[] args) throws InterruptedException
-	{
-		String url = "https://login.salesforce.com/";
-		String username = "hari.radhakrishnan@qeagle.com";
-		String pwd = "India$321";
-		//System.setProperty("webdriver.chrome.drive", "./drivers/chromedriver");
-		WebDriverManager.chromedriver().setup();
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--disable-notifications");
-		ChromeDriver driver = new ChromeDriver(options);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		
-		driver.navigate().to(url);
-		driver.manage().window().maximize();
-		driver.findElement(By.id("username")).sendKeys(username);
-		driver.findElement(By.id("password")).sendKeys(pwd);
-		driver.findElement(By.id("Login")).click();
-		
+	@Test
+	public void createOptyTC01() throws InterruptedException
+	{		
 		WebElement appLauncher = driver.findElement(By.xpath("//div[@role='navigation']/button/div"));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", appLauncher);
@@ -64,7 +50,7 @@ public class TC001_CreateOpportunity {
 		Assert.assertEquals(toastText, "Opportunity \"Salesforce Automation by Adhitya\" was created.");
 		Assert.assertEquals(actualText, ExpectedText);
 		
-		driver.close();
+		
 		
 	}
 
