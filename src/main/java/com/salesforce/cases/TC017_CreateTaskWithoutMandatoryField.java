@@ -14,7 +14,7 @@ public class TC017_CreateTaskWithoutMandatoryField extends Base {
 	@Test
 	public void createTaskWithoutMandatoryFieldTC10() throws InterruptedException {
 		
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='navigation']/button/div")));
 	WebElement appLauncher = driver.findElement(By.xpath("//div[@role='navigation']/button/div"));
 	JavascriptExecutor executor = (JavascriptExecutor)driver;
@@ -38,9 +38,12 @@ public class TC017_CreateTaskWithoutMandatoryField extends Base {
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@title='New Task']")));
 	WebElement newTask = driver.findElement(By.xpath("//a[@title='New Task']"));
 	executor.executeScript("arguments[0].click();", newTask);
-	
+	Thread.sleep(5000);
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Save']")));
-	driver.findElement(By.xpath("//span[text()='Save']")).click();
+	
+	WebElement save = driver.findElement(By.xpath("//span[text()='Save']"));
+	wait.until(ExpectedConditions.visibilityOf(save));
+	executor.executeScript("arguments[0].click();", save);
 	
 	String actualText = driver.findElement(By.xpath("//label[text()='Subject']/following::div[text()='Complete this field.']")).getText();
 	
