@@ -8,30 +8,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import com.salesforce.base.Base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class TC007_CreateLead {
+public class TC007_CreateLead extends Base {
 
-	@Test
+	@BeforeTest
+	public void setExcelFileName()
+	{
+		excelFileName = "CreateLead";
+	}
+	@Test(dataProvider = "excelData")
 	public void createLeadTC07() throws InterruptedException {
-		// TODO Auto-generated method stub
-		String url = "https://login.salesforce.com/";
-		String username = "hari.radhakrishnan@qeagle.com";
-		String pwd = "India$321";
-		//System.setProperty("webdriver.chrome.drive", "./drivers/chromedriver");
-		WebDriverManager.chromedriver().setup();
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--disable-notifications");
-		ChromeDriver driver = new ChromeDriver(options);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		
-		driver.navigate().to(url);
-		driver.manage().window().maximize();
-		driver.findElement(By.id("username")).sendKeys(username);
-		driver.findElement(By.id("password")).sendKeys(pwd);
-		driver.findElement(By.id("Login")).click();
 		
 		WebElement appLauncher = driver.findElement(By.xpath("//div[@role='navigation']/button/div"));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;

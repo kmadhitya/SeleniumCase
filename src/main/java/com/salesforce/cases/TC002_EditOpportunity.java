@@ -8,20 +8,27 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import com.salesforce.base.Base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TC002_EditOpportunity extends Base {
 
-	@Test
-	public void editOptyTC02() throws InterruptedException {
+	@BeforeTest
+	public void setExcelFileName()
+	{
+		excelFileName = "EditOpty";
+	}
+	@Test(dataProvider = "excelData")
+	public void editOptyTC02(String stage) throws InterruptedException {
 		WebElement appLauncher = driver.findElement(By.xpath("//div[@role='navigation']/button/div"));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", appLauncher);
 		
-		WebElement viewAll = driver.findElement(By.xpath("//button[text()='View All']"));
-		executor.executeScript("arguments[0].click();", viewAll);
+		//WebElement viewAll = driver.findElement(By.xpath("//button[text()='View All']"));
+		//executor.executeScript("arguments[0].click();", viewAll);
 		
 		driver.findElement(By.xpath("//p[text()='Sales']")).click();
 		
@@ -30,7 +37,7 @@ public class TC002_EditOpportunity extends Base {
 		
 		Thread.sleep(5000);
 		
-		WebElement opportunityName = driver.findElement(By.xpath("(//a[text()='Salesforce Automation by Adhitya'])[1]"));
+		WebElement opportunityName = driver.findElement(By.xpath("(//a[text()='Salesforce Automation by Adhitya123'])[1]"));
 		executor.executeScript("arguments[0].click();", opportunityName);
 		
 		driver.findElement(By.xpath("//button[text()='Clone']/ancestor::li/following-sibling::li//button")).click();
@@ -39,8 +46,6 @@ public class TC002_EditOpportunity extends Base {
 		WebElement date = driver.findElement(By.xpath("//label[text()='Close Date']/following-sibling::div[1]/input"));
 		date.clear();
 		date.sendKeys("9/12/2022");
-		
-		String expectedText = "Perception Analysis";
 		
 		driver.findElement(By.xpath("//label[text()='Stage']/following-sibling::div[1]//span[text()='Needs Analysis']")).click();
 		
@@ -70,7 +75,7 @@ public class TC002_EditOpportunity extends Base {
 		
 		Assert.assertEquals(actualText, "9/12/2022");
 		
-		Assert.assertEquals(actualText2, expectedText);
+		Assert.assertEquals(actualText2, stage);
 
 	}
 

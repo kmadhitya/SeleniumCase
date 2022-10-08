@@ -9,20 +9,27 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import com.salesforce.base.Base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TC006_DeleteAccount extends Base {
 
-	@Test
-	public void deleteAccountTC06() throws InterruptedException {
+	@BeforeTest
+	public void setExcelFileName()
+	{
+		excelFileName = "DeleteAccount";
+	}
+	@Test(dataProvider = "excelData")
+	public void deleteAccountTC06(String expectedText, String searchText) throws InterruptedException {
 		WebElement appLauncher = driver.findElement(By.xpath("//div[@role='navigation']/button/div"));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", appLauncher);
 		
-		WebElement viewAll = driver.findElement(By.xpath("//button[text()='View All']"));
-		executor.executeScript("arguments[0].click();", viewAll);
+		//WebElement viewAll = driver.findElement(By.xpath("//button[text()='View All']"));
+		//executor.executeScript("arguments[0].click();", viewAll);
 		
 		driver.findElement(By.xpath("//p[text()='Sales']")).click();
 		
@@ -31,7 +38,7 @@ public class TC006_DeleteAccount extends Base {
 		
 		Thread.sleep(3000);
 		
-		driver.findElement(By.xpath("(//input[@type='search'])[2]")).sendKeys("Adhitya", Keys.ENTER);
+		driver.findElement(By.xpath("(//input[@type='search'])[2]")).sendKeys(searchText, Keys.ENTER);
 		
 		Thread.sleep(3000);
 		
@@ -47,16 +54,11 @@ public class TC006_DeleteAccount extends Base {
 		
 		driver.findElement(By.xpath("(//input[@type='search'])[2]/following::button[1]/lightning-primitive-icon")).click();
 		
-		driver.findElement(By.xpath("(//input[@type='search'])[2]")).sendKeys("Adhitya", Keys.ENTER);
+		driver.findElement(By.xpath("(//input[@type='search'])[2]")).sendKeys(searchText, Keys.ENTER);
 		
 		String actualText = driver.findElement(By.xpath("//span[text()='No items to display.']")).getText();
 		
-		Assert.assertEquals(actualText, "No items to display.");
-		
-		Thread.sleep(3000);
-		
-		driver.quit();
-
+		Assert.assertEquals(actualText, expectedText);
 	}
 
 }

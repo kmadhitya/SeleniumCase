@@ -8,11 +8,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import com.salesforce.base.Base;
 
 public class TC016_DeleteTask extends Base {
 	
-	@Test
+	@BeforeTest
+	public void setExcelFileName()
+	{
+		excelFileName = "DeleteTask";
+	}
+	@Test(dataProvider = "excelData")
 	public void editOptyTC02() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='navigation']/button/div")));

@@ -8,13 +8,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import com.salesforce.base.Base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TC010_CreateLeadWithoutMandatoryField extends Base {
 
-	@Test
+	@BeforeTest
+	public void setExcelFileName()
+	{
+		excelFileName = "CreateLeadWithoutMandatoryFields";
+	}
+	@Test(dataProvider = "excelData")
 	public void createLeadWithoutMandatoryFieldTC10() throws InterruptedException {
 		WebElement appLauncher = driver.findElement(By.xpath("//div[@role='navigation']/button/div"));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;

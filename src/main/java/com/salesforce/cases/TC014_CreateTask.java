@@ -8,11 +8,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import com.salesforce.base.Base;
 
 public class TC014_CreateTask extends Base {
 	
-	@Test
+	@BeforeTest
+	public void setExcelFileName()
+	{
+		excelFileName = "CreateTask";
+	}
+	@Test(dataProvider = "excelData")
 	public void createtaskTC14() throws InterruptedException
 	{		
 		WebElement globalActions = driver.findElement(By.xpath("(//span[text()='Global Actions'])[1]"));

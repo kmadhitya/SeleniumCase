@@ -1,5 +1,6 @@
 package com.salesforce.cases;
 
+import java.io.IOException;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -10,21 +11,31 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import com.salesforce.base.Base;
+import com.salesforce.utils.ExcelUtil;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TC001_CreateOpportunity extends Base {
 	
-	@Test
-	public void createOptyTC01() throws InterruptedException
+	@BeforeTest
+	public void setExcelFileName()
+	{
+		excelFileName = "CreateOpty";
+	}
+	@Test(dataProvider = "excelData")
+	public void createOptyTC01(String name, String toastExpectedText) throws InterruptedException
 	{		
 		WebElement appLauncher = driver.findElement(By.xpath("//div[@role='navigation']/button/div"));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", appLauncher);
-		Thread.sleep(3000);
-		WebElement viewAll = driver.findElement(By.xpath("//button[text()='View All']"));
-		executor.executeScript("arguments[0].click();", viewAll);
+		//Thread.sleep(3000);
+		//WebElement viewAll = driver.findElement(By.xpath("//button[text()='View All']"));
+		//executor.executeScript("arguments[0].click();", viewAll);
 		Thread.sleep(3000);
 		driver.findElement(By.xpath("//p[text()='Sales']")).click();
 		
@@ -32,8 +43,7 @@ public class TC001_CreateOpportunity extends Base {
 		executor.executeScript("arguments[0].click();", opportunity);
 		
 		driver.findElement(By.xpath("//div[text()='New']")).click();
-		String ExpectedText = "Salesforce Automation by Adhitya";
-		driver.findElement(By.xpath("//label[text()='Opportunity Name']/following-sibling::div[1]/input")).sendKeys(ExpectedText);
+		driver.findElement(By.xpath("//label[text()='Opportunity Name']/following-sibling::div[1]/input")).sendKeys(name);
 		driver.findElement(By.xpath("//label[text()='Close Date']/following-sibling::div[1]/input")).click();
 		driver.findElement(By.xpath("//button[text()='Today']")).click();
 		
@@ -47,8 +57,8 @@ public class TC001_CreateOpportunity extends Base {
 		System.out.println("Toast message is : " + toastText);
 		
 		String actualText = driver.findElement(By.xpath("//div[text()='Opportunity']/following-sibling::slot/lightning-formatted-text")).getText();
-		Assert.assertEquals(toastText, "Opportunity \"Salesforce Automation by Adhitya\" was created.");
-		Assert.assertEquals(actualText, ExpectedText);
+		Assert.assertEquals(toastText, toastExpectedText);
+		Assert.assertEquals(actualText, name);
 		
 		
 		

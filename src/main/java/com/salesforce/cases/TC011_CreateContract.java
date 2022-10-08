@@ -14,13 +14,20 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import com.salesforce.base.Base;
 
 public class TC011_CreateContract extends Base {
 
-	@Test
+	@BeforeTest
+	public void setExcelFileName()
+	{
+		excelFileName = "CreateContract";
+	}
+	@Test(dataProvider = "excelData")
 	public void createContractTC11() throws InterruptedException {
 		WebElement appLauncher = driver.findElement(By.xpath("//div[@role='navigation']/button/div"));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;

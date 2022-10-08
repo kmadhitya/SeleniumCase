@@ -8,20 +8,27 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import com.salesforce.base.Base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TC005_EditAccount extends Base {
 
-	@Test
-	public void editAccountTC05() throws InterruptedException {
+	@BeforeTest
+	public void setExcelFileName()
+	{
+		excelFileName = "EditAccount";
+	}
+	@Test(dataProvider = "excelData")
+	public void editAccountTC05(String phone, String billingAddress, String shippingAddress, String typeValue) throws InterruptedException {
 		WebElement appLauncher = driver.findElement(By.xpath("//div[@role='navigation']/button/div"));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", appLauncher);
 		
-		WebElement viewAll = driver.findElement(By.xpath("//button[text()='View All']"));
-		executor.executeScript("arguments[0].click();", viewAll);
+		//WebElement viewAll = driver.findElement(By.xpath("//button[text()='View All']"));
+		//executor.executeScript("arguments[0].click();", viewAll);
 		
 		driver.findElement(By.xpath("//p[text()='Sales']")).click();
 		
@@ -36,7 +43,7 @@ public class TC005_EditAccount extends Base {
 		driver.findElement(By.xpath("//button[text()='New Note']/ancestor::li/following-sibling::li//button")).click();
 		driver.findElement(By.xpath("//button[text()='New Note']/ancestor::li/following-sibling::li//div//span[text()='Edit']")).click();
 		
-		driver.findElement(By.xpath("//label[text()='Phone']/following-sibling::div/input")).sendKeys("9090009090");
+		driver.findElement(By.xpath("//label[text()='Phone']/following-sibling::div/input")).sendKeys(phone);
 		
 		driver.findElement(By.xpath("//label[text()='Type']/following-sibling::div[1]//button")).click();
 		WebElement type = driver.findElement(By.xpath("//span[@title='Technology Partner']"));
@@ -48,10 +55,10 @@ public class TC005_EditAccount extends Base {
 		executor.executeScript("arguments[0].click();", industry);
 		
 		//"arguments[0].value='"+ value +"';"
-		String billingAddress = "101 Billing Address";
+		//String billingAddress = "101 Billing Address";
 		WebElement billingStreet = driver.findElement(By.xpath("//label[text()='Billing Street']/following-sibling::div/textarea"));
 		executor.executeScript("arguments[0].value='"+ billingAddress +"';", billingStreet);
-		String shippingAddress = "201 Shipping Address";
+		//String shippingAddress = "201 Shipping Address";
 		WebElement shippingStreet = driver.findElement(By.xpath("//label[text()='Shipping Street']/following-sibling::div/textarea"));
 		executor.executeScript("arguments[0].value='"+ shippingAddress +"';", shippingStreet);
 		
@@ -87,9 +94,7 @@ public class TC005_EditAccount extends Base {
 		
 		String actualText = driver.findElement(By.xpath("//span[text()='Type']/following::span[1]//lightning-formatted-text")).getText();
 		
-		Assert.assertEquals(actualText, "Technology Partner");
-		
-		driver.quit();
+		Assert.assertEquals(actualText, typeValue);
 	}
 
 }

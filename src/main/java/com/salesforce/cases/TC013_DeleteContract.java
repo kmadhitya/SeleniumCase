@@ -11,13 +11,20 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import com.salesforce.base.Base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TC013_DeleteContract extends Base {
 
-	@Test
+	@BeforeTest
+	public void setExcelFileName()
+	{
+		excelFileName = "DeleteContract";
+	}
+	@Test(dataProvider = "excelData")
 	public void deleteContractTC12() throws InterruptedException {
 		WebElement appLauncher = driver.findElement(By.xpath("//div[@role='navigation']/button/div"));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
