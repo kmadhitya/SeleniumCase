@@ -4,11 +4,20 @@
 <parameter name = "url" value = "https://login.salesforce.com/" />
 <parameter name = "username" value = "hari.radhakrishnan@qeagle.com" />
 <parameter name = "password" value = "India$321" />
-  <test name="Test">
-    <classes>
-      <class name="com.salesforce.cases.TC004_CreateAccount"/>
-      <class name="com.salesforce.cases.TC005_EditAccount"/>
-      <class name="com.salesforce.cases.TC006_DeleteAccount"/>
-    </classes>
+<listeners>
+      <listener class-name = "com.salesforce.utils.RetryFailedTestCases"></listener>
+</listeners>
+      <test name = "Opportunity">
+      <classes>
+      <class name="com.sf.testcases.TC001_CreateOpty"/>
+      <class name="com.sf.testcases.TC002_EditOpty"/>
+      <class name="com.sf.testcases.TC003_DeleteOpty"/>
+      </classes>
+      </test>
+      <test name = "Account">
+      <classes>
+      <class name="com.sf.testcases.TC004_CreateAccnt"/>
+      <class name="com.sf.testcases.TC005_EditAccnt"/>
+      </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

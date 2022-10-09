@@ -1,5 +1,6 @@
-package com.salesforce.cases;
+package com.salesforce.base;
 
+import java.io.IOException;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -13,24 +14,34 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
+
+import com.salesforce.utils.ExcelUtil;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Base {
 	public static ChromeDriver driver;
+	public String excelFileName;
 	@BeforeSuite
 	public void setupDriver()
 	{
 		System.out.println("At Before Suite");
 	}
 	
+	@DataProvider(name = "excelData")
+	public Object[][] optyData() throws IOException
+	{
+		Object[][] data = ExcelUtil.readExcelData(excelFileName);
+		return data;
+	}
+	
+	@Parameters({"url","username","password"})
 	@BeforeMethod
-	public void launchBrowserAndLoadURL()
+	public void launchBrowserAndLoadURL(String url, String username, String pwd)
 	{
 		System.out.println("At Before Test");
-		String url = "https://login.salesforce.com/";
-		String username = "hari.radhakrishnan@qeagle.com";
-		String pwd = "India$321";
 		//System.setProperty("webdriver.chrome.drive", "./drivers/chromedriver");
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
@@ -40,6 +51,7 @@ public class Base {
 		
 		driver.navigate().to(url);
 		driver.manage().window().maximize();
+		
 		driver.findElement(By.id("username")).sendKeys(username);
 		driver.findElement(By.id("password")).sendKeys(pwd);
 		driver.findElement(By.id("Login")).click();
@@ -51,7 +63,7 @@ public class Base {
 			driver.findElement(By.xpath("(//a[text()='Switch to Lightning Experience'])[1]")).click();
 		}
 	}
-	/*@AfterMethod
+	@AfterMethod
 	public void closeBrowser()
 	{
 		System.out.println("At After Test");
@@ -61,8 +73,8 @@ public class Base {
 	public void quitBrowser()
 	{
 		System.out.println("At After Suite");
-		driver.close();
-	}*/
+		driver.quit();
+	}
 	
 
 }
