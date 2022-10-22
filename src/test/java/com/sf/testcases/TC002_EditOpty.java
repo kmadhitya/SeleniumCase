@@ -13,10 +13,10 @@ public class TC002_EditOpty extends ProjectSpecMethods{
 	{
 		excelFileName = "EditOpty";
 	}
-	@Test(dataProvider = "excelData")
+	@Test(dataProvider = "excelData", dependsOnMethods = "com.sf.testcases.TC001_CreateOpty.createOptyTC01")
 	public void editOptyTC02(String stage)
 	{
-		new HomePage().clickAppLauncher().clickSales().clickOpportunityLabel().openOpportunity().editOpportunity().clearAndSelectDate()
+		new HomePage(driver).clickAppLauncher().clickSales().clickOpportunityLabel().openOpportunity().editOpportunity().clearAndSelectDate()
 		.selectStageAsPerceptionAnalysis().selectDeliveryStatusFromNoneToInprogress().clickSaveButton().selectDetailsTab()
 		.verifyCloseDate().verifyStage(stage);
 	}

@@ -13,10 +13,10 @@ public class TC005_EditAccnt extends ProjectSpecMethods{
 	{
 		excelFileName = "EditAccount";
 	}
-	@Test(dataProvider = "excelData")
+	@Test(dataProvider = "excelData", dependsOnMethods = "com.sf.testcases.TC004_CreateAccnt.createAccountTC04")
 	public void editAccountTC05(String phone, String billingAddress, String shippingAddress, String typeValue)
 	{
-		new HomePage().clickAppLauncher().clickSales().clickAccountLabel().openAccount().editAccount()
+		new HomePage(driver).clickAppLauncher().clickSales().clickAccountLabel().openFirstAccount().editAccount()
 		.enterPhone(phone).selectTypeAsTechnologyPartner().selectIndustryAsHealthCare().enterBillingAddress(billingAddress)
 		.enterShippingAddress(shippingAddress).selectCustomerPriorityAsLow().selectslaAsSilver().selectActiveAsNo()
 		.selectUpsellOptyAsNo().clickSaveButton().selectDetailsTab().verifyType(typeValue);

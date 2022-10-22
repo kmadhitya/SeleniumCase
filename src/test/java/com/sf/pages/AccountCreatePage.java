@@ -1,28 +1,34 @@
 package com.sf.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.sf.base.ProjectSpecMethods;
 
 public class AccountCreatePage extends ProjectSpecMethods{
 	
+	public AccountCreatePage(ChromeDriver driver)
+	{
+		this.driver = driver;
+	}
+	
 	public AccountCreatePage enterAccountName(String accountName)
 	{
-		driver.findElement(By.xpath("//label[text()='Account Name']/following-sibling::div[1]/input")).sendKeys(accountName);
+		driver.findElement(By.xpath(prop.getProperty("AccountCreatePage.AccountName.xpath"))).sendKeys(accountName);
 		return this;
 	}
 	
 	public AccountCreatePage selectOwnershipAsPublic()
 	{
-		driver.findElement(By.xpath("//label[text()='Ownership']/following-sibling::div[1]//button")).click();
-		driver.findElement(By.xpath("//label[text()='Ownership']/following-sibling::div[1]//span[text()='Public']")).click();
+		driver.findElement(By.xpath(prop.getProperty("AccountCreatePage.Ownership.xpath"))).click();
+		driver.findElement(By.xpath(prop.getProperty("AccountCreatePage.OwnershipAsPublic.xpath"))).click();
 		return this;
 	}
 	
-	public OpportunityDetailsPage clickSaveButton()
+	public AccountDetailsPage clickSaveButton()
 	{
-		driver.findElement(By.xpath("//button[text()='Save']")).click();
-		return new OpportunityDetailsPage();
+		driver.findElement(By.xpath(prop.getProperty("AccountCreatePage.SaveButton.xpath"))).click();
+		return new AccountDetailsPage(driver);
 	}
 
 }

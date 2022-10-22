@@ -16,8 +16,8 @@ public class TC004_CreateAccnt extends ProjectSpecMethods{
 	@Test(dataProvider = "excelData")
 	public void createAccountTC04(String accountName) {
 		
-		new HomePage().clickAppLauncher().clickSales().clickAccountLabel().clickNewButton()
-		.enterAccountName(accountName).selectOwnershipAsPublic().clickSaveButton();
+		new HomePage(driver).clickAppLauncher().clickSales().clickAccountLabel().clickNewButton()
+		.enterAccountName(accountName).selectOwnershipAsPublic().clickSaveButton().verifyAccountName(accountName);
 		
 	}
 

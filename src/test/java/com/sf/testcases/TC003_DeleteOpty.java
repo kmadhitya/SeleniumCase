@@ -13,10 +13,10 @@ public class TC003_DeleteOpty extends ProjectSpecMethods{
 	{
 		excelFileName = "DeleteOpty";
 	}
-	@Test(dataProvider = "excelData")
+	@Test(dataProvider = "excelData", dependsOnMethods = "com.sf.testcases.TC002_EditOpty.editOptyTC02")
 	public void deleteOptyTC03(String expectedText, String searchText)
 	{
-		new HomePage().clickAppLauncher().clickSales().clickOpportunityLabel().searchOpportunity(searchText).openOpportunity()
+		new HomePage(driver).clickAppLauncher().clickSales().clickOpportunityLabel().searchOpportunity(searchText).openOpportunity()
 		.deleteOpportunity().confirmDelete().clearSearchText().searchOpportunity(searchText).verifyNoItemsDisplayedMessage(expectedText);
 	}
 

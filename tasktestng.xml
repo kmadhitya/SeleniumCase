@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Suite" thread-count="3" verbose = "5" parallel = "classes">
+<suite name="Suite" thread-count="1" verbose = "10">
 <parameter name = "url" value = "https://login.salesforce.com/" />
 <parameter name = "username" value = "hari.radhakrishnan@qeagle.com" />
 <parameter name = "password" value = "India$4321" />
-<listeners>
-      <listener class-name = "com.salesforce.utils.RetryFailedTestCases"></listener>
-</listeners>
-      <test name = "Opportunity">
-      <classes>
+<test name="Opportunity">
+    <classes>
       <class name="com.sf.testcases.TC001_CreateOpty"/>
       <class name="com.sf.testcases.TC002_EditOpty"/>
       <class name="com.sf.testcases.TC003_DeleteOpty"/>
-      </classes>
-      </test>
-      <test name = "Account">
-      <classes>
+    </classes>
+    </test>
+  <test name="Account">
+    <classes>
       <class name="com.sf.testcases.TC004_CreateAccnt"/>
       <class name="com.sf.testcases.TC005_EditAccnt"/>
       <class name="com.sf.testcases.TC006_DeleteAccnt"/>
-      </classes>
+    </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -16,8 +16,8 @@ public class TC001_CreateOpty extends ProjectSpecMethods{
 	@Test(dataProvider = "excelData")
 	public void createOptyTC01(String name, String toastExpectedText)
 	{
-		new HomePage().clickAppLauncher().clickSales().clickOpportunityLabel().clickNewButton().enterOpportunityName(name)
-		.selectCloseDateAsToday().selectStageAsNeedsAnalysis().clickSaveButton().verifyToastMessage(toastExpectedText).verifyOpportunityName(name);
+		new HomePage(driver).clickAppLauncher().clickSales().clickOpportunityLabel().clickNewButton().enterOpportunityName(name)
+		.selectCloseDateAsToday().selectStageAsNeedsAnalysis("Needs Analysis").clickSaveButton().verifyToastMessage(toastExpectedText).verifyOpportunityName(name);
 	}
 
 }
