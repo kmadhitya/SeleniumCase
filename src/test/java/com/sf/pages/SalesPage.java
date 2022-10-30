@@ -26,5 +26,12 @@ public class SalesPage extends ProjectSpecMethods{
 		executor.executeScript("arguments[0].click();", account);
 		return new AccountHomePage(driver);
 	}
+	
+	public LeadHomePage clickLeadLabel()
+	{
+		WebElement leads = driver.findElement(By.xpath("//span[text()='Leads']"));
+		executor.executeScript("arguments[0].click();", leads);
+		return new LeadHomePage(driver);
+	}
 
 }

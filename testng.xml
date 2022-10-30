@@ -3,7 +3,7 @@
 <suite name="Suite" thread-count="1" verbose = "5">
 <parameter name = "url" value = "https://login.salesforce.com/" />
 <parameter name = "username" value = "hari.radhakrishnan@qeagle.com" />
-<parameter name = "password" value = "India$321" />
+<parameter name = "password" value = "Testleaf$321" />
   <test name="Opportunity">
     <classes>
       <class name="com.salesforce.cases.TC001_CreateOpportunity"/>

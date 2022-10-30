@@ -22,7 +22,7 @@ public class TC007_CreateLead extends Base {
 		excelFileName = "CreateLead";
 	}
 	@Test(dataProvider = "excelData")
-	public void createLeadTC07() throws InterruptedException {
+	public void createLeadTC07(String lastName, String company, String expected) throws InterruptedException {
 		
 		WebElement appLauncher = driver.findElement(By.xpath("//div[@role='navigation']/button/div"));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;

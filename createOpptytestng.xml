@@ -3,7 +3,7 @@
 <suite name="Suite" thread-count="3" verbose = "5" parallel = "classes">
 <parameter name = "url" value = "https://login.salesforce.com/" />
 <parameter name = "username" value = "hari.radhakrishnan@qeagle.com" />
-<parameter name = "password" value = "India$4321" />
+<parameter name = "password" value = "Testleaf$321" />
 <listeners>
       <listener class-name = "com.salesforce.utils.RetryFailedTestCases"></listener>
 </listeners>
