@@ -14,9 +14,10 @@ public class TC008_EditALead extends ProjectSpecMethods {
 		excelFileName = "EditLead";
 	}
 	@Test(dataProvider = "excelData")
-	public void editLeadTC08(String LastName, String Expected) throws InterruptedException {
+	public void editLeadTC008(String lastName, String expected) throws InterruptedException {
 		
-		new HomePage(driver).clickAppLauncher().clickSales().clickLeadLabel();
+		new HomePage(driver).clickAppLauncher().clickSales().clickLeadLabel().openLead().editLead().enterLastName(lastName)
+		.selectLeadStatusAsWorkingContacted().clickSaveButton().selectDetailsTab().verifyLeadStatus(expected);
 		
 		
 	}

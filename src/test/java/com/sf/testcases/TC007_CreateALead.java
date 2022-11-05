@@ -14,7 +14,7 @@ public class TC007_CreateALead extends ProjectSpecMethods {
 		excelFileName = "CreateLead";
 	}
 	@Test(dataProvider = "excelData")
-	public void createLeadTC07(String lastName, String company, String expected) throws InterruptedException {
+	public void createLeadTC007(String lastName, String company, String expected) throws InterruptedException {
 		
 		new HomePage(driver).clickAppLauncher().clickSales().clickLeadLabel().clickNewButton().selectSalutationAsMr()
 		.enterLastName(lastName).enterCompanyName(company).clickSaveButton().verifyLeadName(expected);

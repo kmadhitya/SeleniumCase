@@ -21,5 +21,25 @@ public class LeadDetailsPage extends ProjectSpecMethods {
 		return this;
 	}
 	
+	public LeadEditPage editLead()
+	{
+		driver.findElement(By.xpath("//button[text()='Submit for Approval']/ancestor::li/following-sibling::li//button")).click();
+		driver.findElement(By.xpath("//button[text()='Submit for Approval']/ancestor::li/following-sibling::li//div//span[text()='Edit']")).click();
+		return new LeadEditPage(driver);
+	}
+	
+	public LeadDetailsPage selectDetailsTab()
+	{
+		driver.findElement(By.xpath("(//a[text()='Details'])[1]")).click();
+		return this;
+	}
+	
+	public LeadDetailsPage verifyLeadStatus(String expected) 
+	{
+		String actualText = driver.findElement(By.xpath("//span[text()='Lead Status']/following::span[1]//lightning-formatted-text")).getText();
+		Assert.assertEquals(actualText, expected);
+		return this;
+	}
+	
 
 }

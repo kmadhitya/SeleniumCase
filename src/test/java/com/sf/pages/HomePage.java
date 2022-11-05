@@ -21,6 +21,7 @@ public class HomePage extends ProjectSpecMethods{
 	
 	public HomePage clickAppLauncher()
 	{
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty("HomePage.AppLauncher.xpath"))));
 		WebElement appLauncher = driver.findElement(By.xpath(prop.getProperty("HomePage.AppLauncher.xpath")));
 		executor.executeScript("arguments[0].click();", appLauncher);
 		return this;

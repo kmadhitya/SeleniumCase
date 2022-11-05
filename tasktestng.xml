@@ -6,7 +6,7 @@
 <parameter name = "password" value = "Testleaf$321" />
 <test name="Opportunity">
     <classes>
-      <class name="com.salesforce.cases.TC007_CreateLead"/>
+      <class name="com.sf.testcases.TC008_EditALead"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

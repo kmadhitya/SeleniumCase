@@ -37,8 +37,8 @@ public class TC008_EditLead extends Base {
 		
 		Thread.sleep(3000);
 		
-		WebElement accountName = driver.findElement(By.xpath("(//a[text()='Kumar'])[1]"));
-		executor.executeScript("arguments[0].click();", accountName);
+		WebElement leadName = driver.findElement(By.xpath("(//a[text()='Kumar'])[1]"));
+		executor.executeScript("arguments[0].click();", leadName);
 		
 		driver.findElement(By.xpath("//button[text()='Submit for Approval']/ancestor::li/following-sibling::li//button")).click();
 		driver.findElement(By.xpath("//button[text()='Submit for Approval']/ancestor::li/following-sibling::li//div//span[text()='Edit']")).click();
