@@ -1,4 +1,4 @@
-package com.sf.pages;
+package com.sf.hybridpages;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -13,56 +13,56 @@ import org.testng.Assert;
 
 import com.sf.projectspecmethod.ProjectSpecMethods;
 
-public class FilesHomePage extends ProjectSpecMethods{
+public class FilesHomePageHybrid extends ProjectSpecMethods{
 	
-	public FilesHomePage(ChromeDriver driver)
+	public FilesHomePageHybrid(ChromeDriver driver)
 	{
 		this.driver = driver;
 	}
 	
-	public FilesHomePage clickShowMoreActionDropdown()
+	public FilesHomePageHybrid clickShowMoreActionDropdown()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody/tr[1]/td[4]")));
 		driver.findElement(By.xpath("//tbody/tr[1]/td[4]")).click();
 		return this;
 	}
 	
-	public FilesHomePage clickPublicLink()
+	public FilesHomePageHybrid clickPublicLink()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//a[@title='Public Link'])[1]")));
 		driver.findElement(By.xpath("(//a[@title='Public Link'])[1]")).click();
 		return this;
 	}
 	
-	public FilesHomePage clickDownload()
+	public FilesHomePageHybrid clickDownload()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//a[@title='Download'])[1]")));
 		driver.findElement(By.xpath("(//a[@title='Download'])[1]")).click();
 		return this;
 	}
 	
-	public FilesHomePage clickShare()
+	public FilesHomePageHybrid clickShare()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//a[@title='Share'])[1]")));
 		driver.findElement(By.xpath("(//a[@title='Share'])[1]")).click();
 		return this;
 	}
 	
-	public FilesHomePage clickSearchPeople()
+	public FilesHomePageHybrid clickSearchPeople()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@title='Search People']")));
 		driver.findElement(By.xpath("//input[@title='Search People']")).click();
 		return this;
 	}
 	
-	public FilesHomePage selectDerrick()
+	public FilesHomePageHybrid selectDerrick()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@title='Derrick Dsouza']")));
 		driver.findElement(By.xpath("//div[@title='Derrick Dsouza']")).click();
 		return this;
 	}
 	
-	public FilesHomePage verifyCantShareWithOwnerMessage()
+	public FilesHomePageHybrid verifyCantShareWithOwnerMessage()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='lookupCmp']/ul/li")));		
 		String actualText = driver.findElement(By.xpath("//div[@class='lookupCmp']/ul/li")).getText();
@@ -72,7 +72,7 @@ public class FilesHomePage extends ProjectSpecMethods{
 	
 
 	
-	public FilesHomePage verifyLinkTextFieldIsDisabled()
+	public FilesHomePageHybrid verifyLinkTextFieldIsDisabled()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='publicLinkURL']")));
 		String attribute = driver.findElement(By.xpath("//input[@name='publicLinkURL']")).getAttribute("readonly");
@@ -82,21 +82,21 @@ public class FilesHomePage extends ProjectSpecMethods{
 		return this;
 	}
 	
-	public FilesHomePage closePublicLinkWindow()
+	public FilesHomePageHybrid closePublicLinkWindow()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@title='Close this window']//lightning-primitive-icon")));
 		driver.findElement(By.xpath("//button[@title='Close this window']//lightning-primitive-icon")).click();
 		return this;
 	}
 	
-	public FilesHomePage clickUploadFiles()
+	public FilesHomePageHybrid clickUploadFiles()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@title='Upload Files']")));
 		driver.findElement(By.xpath("//div[@title='Upload Files']")).click();
 		return this;
 	}
 	
-	public FilesHomePage uploadFiles() throws AWTException
+	public FilesHomePageHybrid uploadFiles() throws AWTException
 	{
 		Robot rb = new Robot();
 		 
@@ -119,14 +119,14 @@ public class FilesHomePage extends ProjectSpecMethods{
 	}
 	
 	
-	public FilesHomePage doneUploadFiles()
+	public FilesHomePageHybrid doneUploadFiles()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Done']")));
 		driver.findElement(By.xpath("//span[text()='Done']")).click();
 		return this;
 	}
 	
-	public FilesHomePage clickViewFileDetails()
+	public FilesHomePageHybrid clickViewFileDetails()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//a[@title='View File Details'])[1]")));
 		driver.findElement(By.xpath("(//a[@title='View File Details'])[1]")).click();

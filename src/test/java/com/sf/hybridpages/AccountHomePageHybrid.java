@@ -1,4 +1,4 @@
-package com.sf.pages;
+package com.sf.hybridpages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -9,41 +9,41 @@ import org.testng.Assert;
 
 import com.sf.projectspecmethod.ProjectSpecMethods;
 
-public class AccountHomePage extends ProjectSpecMethods{
+public class AccountHomePageHybrid extends ProjectSpecMethods{
 	
-	public AccountHomePage(ChromeDriver driver)
+	public AccountHomePageHybrid(ChromeDriver driver)
 	{
 		this.driver = driver;
 	}
 	
-	public AccountCreatePage clickNewButton()
+	public AccountCreatePageHybrid clickNewButton()
 	{
 		driver.findElement(By.xpath(prop.getProperty("AccountHomePage.NewButton.xpath"))).click();
-		return new AccountCreatePage(driver);
+		return new AccountCreatePageHybrid(driver);
 	}
 	
-	public AccountDetailsPage openFirstAccount()
+	public AccountDetailsPageHybrid openFirstAccount()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty("AccountHomePage.FirstDisplayedAccount.xpath"))));
 		WebElement accountName = driver.findElement(By.xpath(prop.getProperty("AccountHomePage.FirstDisplayedAccount.xpath")));
 		executor.executeScript("arguments[0].click();", accountName);
-		return new AccountDetailsPage(driver);
+		return new AccountDetailsPageHybrid(driver);
 	}
 	
-	public AccountHomePage searchAccount(String searchText)
+	public AccountHomePageHybrid searchAccount(String searchText)
 	{
 		driver.findElement(By.xpath(prop.getProperty("AccountHomePage.searchTextBox.xpath"))).sendKeys(searchText, Keys.ENTER);
 		return this;
 	}
 	
-	public AccountHomePage clearSearchText()
+	public AccountHomePageHybrid clearSearchText()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty("AccountHomePage.clearSearchTextButton.xpath"))));
 		driver.findElement(By.xpath(prop.getProperty("AccountHomePage.clearSearchTextButton.xpath"))).click();
 		return this;
 	}
 	
-	public AccountHomePage verifyNoItemsToDisplay(String expectedText)
+	public AccountHomePageHybrid verifyNoItemsToDisplay(String expectedText)
 	{
 		String actualText = driver.findElement(By.xpath(prop.getProperty("AccountHomePage.NoItemsDisplayedMessage.xpath"))).getText();
 		Assert.assertEquals(actualText, expectedText);

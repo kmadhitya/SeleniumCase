@@ -4,8 +4,8 @@ import java.awt.AWTException;
 
 import org.testng.annotations.Test;
 
-import com.sf.base.ProjectSpecMethods;
 import com.sf.pages.HomePage;
+import com.sf.projectspecmethod.ProjectSpecMethods;
 
 public class AssessmentTC_FileUploadDownload extends ProjectSpecMethods {
 	

@@ -10,7 +10,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.sf.base.ProjectSpecMethods;
+import com.sf.projectspecmethod.ProjectSpecMethods;
 
 public class HomePage extends ProjectSpecMethods{
 	

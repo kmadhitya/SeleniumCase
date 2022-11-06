@@ -1,4 +1,4 @@
-package com.sf.pages;
+package com.sf.hybridpages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -9,40 +9,41 @@ import org.testng.Assert;
 
 import com.sf.projectspecmethod.ProjectSpecMethods;
 
-public class OpportunityHomePage extends ProjectSpecMethods{
+public class OpportunityHomePageHybrid extends ProjectSpecMethods{
 	
-	public OpportunityHomePage(ChromeDriver driver)
+	public OpportunityHomePageHybrid(ChromeDriver driver)
 	{
 		this.driver = driver;
 	}
 	
-	public OpportunityCreatePage clickNewButton()
+	public OpportunityCreatePageHybrid clickNewButton()
 	{
 		driver.findElement(By.xpath(prop.getProperty("OpportunityHomePage.NewButton.xpath"))).click();
-		return new OpportunityCreatePage(driver);
+		return new OpportunityCreatePageHybrid(driver);
 	}
 	
-	public OpportunityDetailsPage openOpportunity()
+	public OpportunityDetailsPageHybrid openOpportunity()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty("OpportunityHomePage.FirstDisplayedOpportunity.xpath"))));
 		WebElement opportunityName = driver.findElement(By.xpath(prop.getProperty("OpportunityHomePage.FirstDisplayedOpportunity.xpath")));
 		executor.executeScript("arguments[0].click();", opportunityName);
-		return new OpportunityDetailsPage(driver);
+		return new OpportunityDetailsPageHybrid(driver);
 	}
 	
-	public OpportunityHomePage searchOpportunity(String searchText)
+	public OpportunityHomePageHybrid searchOpportunity(String searchText)
 	{
-		driver.findElement(By.xpath(prop.getProperty("OpportunityHomePage.searchTextBox.xpath"))).sendKeys(searchText, Keys.ENTER);
+		//driver.findElement(By.xpath(prop.getProperty("OpportunityHomePage.searchTextBox.xpath"))).sendKeys(searchText, Keys.ENTER);
+		typeText(locateElement("xpath", prop.getProperty("OpportunityHomePage.searchTextBox.xpath")), searchText);
 		return this;
 	}
 	
-	public OpportunityHomePage clearSearchText()
+	public OpportunityHomePageHybrid clearSearchText()
 	{
 		driver.findElement(By.xpath(prop.getProperty("OpportunityHomePage.clearSearchTextButton.xpath"))).click();
 		return this;
 	}
 	
-	public OpportunityHomePage verifyNoItemsDisplayedMessage(String expectedText)
+	public OpportunityHomePageHybrid verifyNoItemsDisplayedMessage(String expectedText)
 	{
 		String actualText = driver.findElement(By.xpath(prop.getProperty("OpportunityHomePage.NoItemsDisplayedMessage.xpath"))).getText();
 		Assert.assertEquals(actualText, expectedText);

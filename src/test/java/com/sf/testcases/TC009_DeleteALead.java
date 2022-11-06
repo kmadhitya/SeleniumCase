@@ -3,7 +3,7 @@ package com.sf.testcases;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.sf.base.ProjectSpecMethods;
+import com.sf.projectspecmethod.ProjectSpecMethods;
 
 public class TC009_DeleteALead extends ProjectSpecMethods {
 	

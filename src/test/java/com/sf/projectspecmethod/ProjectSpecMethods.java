@@ -1,4 +1,4 @@
-package com.sf.base;
+package com.sf.projectspecmethod;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,15 +21,13 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 
+import com.sf.base.Base;
 import com.sf.utilities.ReadExcel;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class ProjectSpecMethods {
+public class ProjectSpecMethods extends Base{
 	
-	public ChromeDriver driver;
-	public static JavascriptExecutor executor;
-	public static WebDriverWait wait;
 	public String excelFileName;
 	public static Properties prop;
 	@BeforeSuite
@@ -50,24 +48,13 @@ public class ProjectSpecMethods {
 	public void launchBrowserAndLoadURL() throws IOException
 	{
 		System.out.println("At Before Test");
-		//System.setProperty("webdriver.chrome.drive", "./drivers/chromedriver");
-		WebDriverManager.chromedriver().setup();
+		//File downloadFolder = new File("D:\\Workspace\\Selenium\\files\\");
+		//downloadFolder.mkdir();
+		//Map<String, Object> preferences = new HashMap<String, Object>();
+		//preferences.put("profile.default_content_settings.popups", 0);
+		//preferences.put("download.default_directory", "D:\\Workspace\\Selenium\\files\\");
 		
-		File downloadFolder = new File("D:\\Workspace\\Selenium\\files\\");
-		downloadFolder.mkdir();
-		Map<String, Object> preferences = new HashMap<String, Object>();
-		preferences.put("profile.default_content_settings.popups", 0);
-		preferences.put("download.default_directory", "D:\\Workspace\\Selenium\\files\\");
-		
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--disable-notifications");
-		
-		options.setExperimentalOption("prefs", preferences);
-		
-		driver = new ChromeDriver(options);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		executor = (JavascriptExecutor)driver;
-		wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		//options.setExperimentalOption("prefs", preferences);
 		
 		prop = new Properties();
 		FileInputStream fis = new FileInputStream(new File("src/main/resources/config.properties"));
@@ -75,31 +62,35 @@ public class ProjectSpecMethods {
 		String url = prop.getProperty("url");
 		String username = prop.getProperty("username");
 		String pwd = prop.getProperty("password");
-		driver.navigate().to(url);
-		driver.manage().window().maximize();
+
+		openURLInChromeBrowser(url);
 		
-		driver.findElement(By.id("username")).sendKeys(username);
-		driver.findElement(By.id("password")).sendKeys(pwd);
-		driver.findElement(By.id("Login")).click();
+		typeText(locateElement("id", "username"), username);
+		typeText(locateElement("id", "password"), pwd); 
+		clickElement(locateElement("id", "Login")); 
+		//driver.findElement(By.id("username")).sendKeys(username);
+		//driver.findElement(By.id("password")).sendKeys(pwd);
+		//driver.findElement(By.id("Login")).click();
 		
-		String title = driver.getTitle();
+		String title = getTitleOfThePage();
 		System.out.println("Title is : " + title);
-		if (driver.getTitle().contains("Salesforce - Developer Edition"))
+		if (title.contains("Salesforce - Developer Edition"))
 		{
-			driver.findElement(By.xpath("(//a[text()='Switch to Lightning Experience'])[1]")).click();
+			//driver.findElement(By.xpath("(//a[text()='Switch to Lightning Experience'])[1]")).click();
+			clickElement(locateElement("xpath", "(//a[text()='Switch to Lightning Experience'])[1]")); 
 		}
 	}
 	@AfterMethod
 	public void closeBrowser()
 	{
 		System.out.println("At After Test");
-		driver.close();
+		closeTheBrowser();
 	}
 	@AfterSuite
 	public void quitBrowser()
 	{
 		System.out.println("At After Suite");
-		driver.quit();
+		quitTheBrowser();
 	}
 
 }

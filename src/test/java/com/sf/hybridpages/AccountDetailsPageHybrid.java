@@ -1,4 +1,4 @@
-package com.sf.pages;
+package com.sf.hybridpages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,14 +7,14 @@ import org.testng.Assert;
 
 import com.sf.projectspecmethod.ProjectSpecMethods;
 
-public class AccountDetailsPage extends ProjectSpecMethods{
+public class AccountDetailsPageHybrid extends ProjectSpecMethods{
 	
-	public AccountDetailsPage(ChromeDriver driver)
+	public AccountDetailsPageHybrid(ChromeDriver driver)
 	{
 		this.driver = driver;
 	}
 	
-	public AccountDetailsPage verifyAccountName(String accountName)
+	public AccountDetailsPageHybrid verifyAccountName(String accountName)
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty("AccountDetailsPage.AccountName.xpath"))));
 		String actualText = driver.findElement(By.xpath(prop.getProperty("AccountDetailsPage.AccountName.xpath"))).getText();
@@ -22,37 +22,37 @@ public class AccountDetailsPage extends ProjectSpecMethods{
 		return this;
 	}
 	
-	public AccountEditPage editAccount()
+	public AccountEditPageHybrid editAccount()
 	{
 		driver.findElement(By.xpath(prop.getProperty("AccountDetailsPage.AccountDropdownButton.xpath"))).click();
 		driver.findElement(By.xpath(prop.getProperty("AccountDetailsPage.EditAccountButton.xpath"))).click();
-		return new AccountEditPage(driver);
+		return new AccountEditPageHybrid(driver);
 	}
 	
-	public AccountDetailsPage selectDetailsTab()
+	public AccountDetailsPageHybrid selectDetailsTab()
 	{
 		driver.findElement(By.xpath(prop.getProperty("AccountDetailsPage.DetailsTab.xpath"))).click();
 		return this;
 	}
 	
-	public AccountDetailsPage verifyType(String typeValue)
+	public AccountDetailsPageHybrid verifyType(String typeValue)
 	{
 		String actualText = driver.findElement(By.xpath(prop.getProperty("AccountDetailsPage.Type.xpath"))).getText();
 		Assert.assertEquals(actualText, typeValue);
 		return this;
 	}
 	
-	public AccountDetailsPage deleteAccount()
+	public AccountDetailsPageHybrid deleteAccount()
 	{
 		driver.findElement(By.xpath(prop.getProperty("AccountDetailsPage.AccountDropdownButton.xpath"))).click();
 		driver.findElement(By.xpath(prop.getProperty("AccountDetailsPage.DeleteAccountButton.xpath"))).click();
 		return this;
 	}
 	
-	public AccountHomePage confirmDeleteAccount()
+	public AccountHomePageHybrid confirmDeleteAccount()
 	{
 		driver.findElement(By.xpath(prop.getProperty("AccountDetailsPage.ConfirmDeleteButton.xpath"))).click();
-		return new AccountHomePage(driver);
+		return new AccountHomePageHybrid(driver);
 	}
 	
 	

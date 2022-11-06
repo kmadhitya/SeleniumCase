@@ -1,4 +1,4 @@
-package com.sf.pages;
+package com.sf.hybridpages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -7,14 +7,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.sf.projectspecmethod.ProjectSpecMethods;
 
-public class OpportunityEditPage extends ProjectSpecMethods{
+public class OpportunityEditPageHybrid extends ProjectSpecMethods{
 	
-	public OpportunityEditPage(ChromeDriver driver)
+	public OpportunityEditPageHybrid(ChromeDriver driver)
 	{
 		this.driver = driver;
 	}
 	
-	public OpportunityEditPage clearAndSelectDate()
+	public OpportunityEditPageHybrid clearAndSelectDate()
 	{
 		WebElement date = driver.findElement(By.xpath(prop.getProperty("OpportunityEditPage.CloseDate.xpath")));
 		date.clear();
@@ -22,7 +22,7 @@ public class OpportunityEditPage extends ProjectSpecMethods{
 		return this;
 	}
 	
-	public OpportunityEditPage selectStageAsPerceptionAnalysis()
+	public OpportunityEditPageHybrid selectStageAsPerceptionAnalysis()
 	{
 		driver.findElement(By.xpath(prop.getProperty("OpportunityEditPage.Stage.xpath"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty("OpportunityEditPage.StageAsPerceptionAnalysis.xpath"))));
@@ -30,7 +30,7 @@ public class OpportunityEditPage extends ProjectSpecMethods{
 		return this;
 	}
 	
-	public OpportunityEditPage selectDeliveryStatusFromNoneToInprogress()
+	public OpportunityEditPageHybrid selectDeliveryStatusFromNoneToInprogress()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty("OpportunityEditPage.DeliveryStatus.xpath"))));
 		WebElement deliveryStatus = driver.findElement(By.xpath(prop.getProperty("OpportunityEditPage.DeliveryStatus.xpath")));
@@ -41,10 +41,10 @@ public class OpportunityEditPage extends ProjectSpecMethods{
 		return this;
 	}
 	
-	public OpportunityDetailsPage clickSaveButton()
+	public OpportunityDetailsPageHybrid clickSaveButton()
 	{
 		driver.findElement(By.xpath(prop.getProperty("OpportunityEditPage.SaveButton.xpath"))).click();
-		return new OpportunityDetailsPage(driver);
+		return new OpportunityDetailsPageHybrid(driver);
 	}
 
 }

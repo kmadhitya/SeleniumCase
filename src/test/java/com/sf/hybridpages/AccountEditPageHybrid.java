@@ -1,4 +1,4 @@
-package com.sf.pages;
+package com.sf.hybridpages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -7,20 +7,20 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.sf.projectspecmethod.ProjectSpecMethods;
 
-public class AccountEditPage extends ProjectSpecMethods{
+public class AccountEditPageHybrid extends ProjectSpecMethods{
 	
-	public AccountEditPage(ChromeDriver driver)
+	public AccountEditPageHybrid(ChromeDriver driver)
 	{
 		this.driver = driver;
 	}
 	
-	public AccountEditPage enterPhone(String phone)
+	public AccountEditPageHybrid enterPhone(String phone)
 	{
 		driver.findElement(By.xpath(prop.getProperty("AccountEditPage.Phone.xpath"))).sendKeys(phone);
 		return this;
 	}
 	
-	public AccountEditPage selectTypeAsTechnologyPartner()
+	public AccountEditPageHybrid selectTypeAsTechnologyPartner()
 	{
 		driver.findElement(By.xpath(prop.getProperty("AccountEditPage.Type.xpath"))).click();
 		WebElement type = driver.findElement(By.xpath(prop.getProperty("AccountEditPage.TypeAsTechnologyPartner.xpath")));
@@ -28,7 +28,7 @@ public class AccountEditPage extends ProjectSpecMethods{
 		return this;
 	}
 	
-	public AccountEditPage selectIndustryAsHealthCare()
+	public AccountEditPageHybrid selectIndustryAsHealthCare()
 	{
 		WebElement click_industry = driver.findElement(By.xpath(prop.getProperty("AccountEditPage.Industry.xpath")));
 		executor.executeScript("arguments[0].click();", click_industry);
@@ -37,21 +37,21 @@ public class AccountEditPage extends ProjectSpecMethods{
 		return this;
 	}
 	
-	public AccountEditPage enterBillingAddress(String billingAddress)
+	public AccountEditPageHybrid enterBillingAddress(String billingAddress)
 	{
 		WebElement billingStreet = driver.findElement(By.xpath(prop.getProperty("AccountEditPage.BillingAddress.xpath")));
 		executor.executeScript("arguments[0].value='"+ billingAddress +"';", billingStreet);
 		return this;
 	}
 	
-	public AccountEditPage enterShippingAddress(String shippingAddress)
+	public AccountEditPageHybrid enterShippingAddress(String shippingAddress)
 	{
 		WebElement shippingStreet = driver.findElement(By.xpath(prop.getProperty("AccountEditPage.ShippingAddress.xpath")));
 		executor.executeScript("arguments[0].value='"+ shippingAddress +"';", shippingStreet);
 		return this;
 	}
 	
-	public AccountEditPage selectCustomerPriorityAsLow()
+	public AccountEditPageHybrid selectCustomerPriorityAsLow()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty("AccountEditPage.CustomerPriority.xpath"))));
 		WebElement customerPriority = driver.findElement(By.xpath(prop.getProperty("AccountEditPage.CustomerPriority.xpath")));
@@ -61,7 +61,7 @@ public class AccountEditPage extends ProjectSpecMethods{
 		return this;
 	}
 	
-	public AccountEditPage selectslaAsSilver()
+	public AccountEditPageHybrid selectslaAsSilver()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty("AccountEditPage.SLA.xpath"))));
 		WebElement sla = driver.findElement(By.xpath(prop.getProperty("AccountEditPage.SLA.xpath")));
@@ -71,7 +71,7 @@ public class AccountEditPage extends ProjectSpecMethods{
 		return this;
 	}
 	
-	public AccountEditPage selectActiveAsNo()
+	public AccountEditPageHybrid selectActiveAsNo()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty("AccountEditPage.Active.xpath"))));
 		WebElement active = driver.findElement(By.xpath(prop.getProperty("AccountEditPage.Active.xpath")));
@@ -81,7 +81,7 @@ public class AccountEditPage extends ProjectSpecMethods{
 		return this;
 	}
 	
-	public AccountEditPage selectUpsellOptyAsNo()
+	public AccountEditPageHybrid selectUpsellOptyAsNo()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty("AccountEditPage.UpsellOpportunity.xpath"))));
 		WebElement upsellOpty = driver.findElement(By.xpath(prop.getProperty("AccountEditPage.UpsellOpportunity.xpath")));
@@ -91,11 +91,11 @@ public class AccountEditPage extends ProjectSpecMethods{
 		return this;
 	}
 	
-	public AccountDetailsPage clickSaveButton()
+	public AccountDetailsPageHybrid clickSaveButton()
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty("AccountEditPage.SaveButton.xpath"))));
 		driver.findElement(By.xpath(prop.getProperty("AccountEditPage.SaveButton.xpath"))).click();
-		return new AccountDetailsPage(driver);
+		return new AccountDetailsPageHybrid(driver);
 	}
 
 }

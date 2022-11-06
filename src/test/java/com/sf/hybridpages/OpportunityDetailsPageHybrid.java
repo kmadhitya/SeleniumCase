@@ -1,4 +1,4 @@
-package com.sf.pages;
+package com.sf.hybridpages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,14 +7,14 @@ import org.testng.Assert;
 
 import com.sf.projectspecmethod.ProjectSpecMethods;
 
-public class OpportunityDetailsPage extends ProjectSpecMethods{
+public class OpportunityDetailsPageHybrid extends ProjectSpecMethods{
 	
-	public OpportunityDetailsPage(ChromeDriver driver)
+	public OpportunityDetailsPageHybrid(ChromeDriver driver)
 	{
 		this.driver = driver;
 	}
 	
-	public OpportunityDetailsPage verifyToastMessage(String toastExpectedText)
+	public OpportunityDetailsPageHybrid verifyToastMessage(String toastExpectedText)
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty("OpportunityDetailsPage.ToastMessage.xpath"))));
 		String toastText = driver.findElement(By.xpath(prop.getProperty("OpportunityDetailsPage.ToastMessage.xpath"))).getText();
@@ -23,47 +23,47 @@ public class OpportunityDetailsPage extends ProjectSpecMethods{
 		return this;
 	}
 	
-	public OpportunityDetailsPage verifyOpportunityName(String name)
+	public OpportunityDetailsPageHybrid verifyOpportunityName(String name)
 	{
 		String actualText = driver.findElement(By.xpath(prop.getProperty("OpportunityDetailsPage.OpportunityName.xpath"))).getText();
 		Assert.assertEquals(actualText, name);
 		return this;
 	}
 	
-	public OpportunityEditPage editOpportunity()
+	public OpportunityEditPageHybrid editOpportunity()
 	{
 		driver.findElement(By.xpath(prop.getProperty("OpportunityDetailsPage.OpportunityDropdownButton.xpath"))).click();
 		driver.findElement(By.xpath(prop.getProperty("OpportunityDetailsPage.EditOpportunityButton.xpath"))).click();
-		return new OpportunityEditPage(driver);
+		return new OpportunityEditPageHybrid(driver);
 	}
 	
-	public OpportunityDetailsPage deleteOpportunity()
+	public OpportunityDetailsPageHybrid deleteOpportunity()
 	{
 		driver.findElement(By.xpath(prop.getProperty("OpportunityDetailsPage.OpportunityDropdownButton.xpath"))).click();
 		driver.findElement(By.xpath(prop.getProperty("OpportunityDetailsPage.DeleteOpportunityButton.xpath"))).click();
 		return this;
 	}
 	
-	public OpportunityHomePage confirmDelete()
+	public OpportunityHomePageHybrid confirmDelete()
 	{
 		driver.findElement(By.xpath(prop.getProperty("OpportunityDetailsPage.ConfirmDeleteButton.xpath"))).click();
-		return new OpportunityHomePage(driver);
+		return new OpportunityHomePageHybrid(driver);
 	}
 	
-	public OpportunityDetailsPage selectDetailsTab()
+	public OpportunityDetailsPageHybrid selectDetailsTab()
 	{
 		driver.findElement(By.xpath(prop.getProperty("OpportunityDetailsPage.DetailsTab.xpath"))).click();
 		return this;
 	}
 	
-	public OpportunityDetailsPage verifyCloseDate() 
+	public OpportunityDetailsPageHybrid verifyCloseDate() 
 	{
 		String actualText = driver.findElement(By.xpath(prop.getProperty("OpportunityDetailsPage.CloseDate.xpath"))).getText();		
 		Assert.assertEquals(actualText, "10/30/2022");
 		return this;
 	}
 	
-	public OpportunityDetailsPage verifyStage(String stage)
+	public OpportunityDetailsPageHybrid verifyStage(String stage)
 	{
 		String actualText2 = driver.findElement(By.xpath(prop.getProperty("OpportunityDetailsPage.Stage.xpath"))).getText();
 		Assert.assertEquals(actualText2, stage);

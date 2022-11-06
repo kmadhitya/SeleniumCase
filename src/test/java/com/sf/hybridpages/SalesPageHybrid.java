@@ -1,4 +1,4 @@
-package com.sf.pages;
+package com.sf.hybridpages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -6,32 +6,32 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.sf.projectspecmethod.ProjectSpecMethods;
 
-public class SalesPage extends ProjectSpecMethods{
+public class SalesPageHybrid extends ProjectSpecMethods{
 	
-	public SalesPage(ChromeDriver driver)
+	public SalesPageHybrid(ChromeDriver driver)
 	{
 		this.driver = driver;
 	}
 	
-	public OpportunityHomePage clickOpportunityLabel()
+	public OpportunityHomePageHybrid clickOpportunityLabel()
 	{
 		WebElement opportunity = driver.findElement(By.xpath(prop.getProperty("SalesPage.OpportunityLabel.xpath")));
 		executor.executeScript("arguments[0].click();", opportunity);
-		return new OpportunityHomePage(driver);
+		return new OpportunityHomePageHybrid(driver);
 	}
 	
-	public AccountHomePage clickAccountLabel()
+	public AccountHomePageHybrid clickAccountLabel()
 	{
 		WebElement account = driver.findElement(By.xpath(prop.getProperty("SalesPage.AccountLabel.xpath")));
 		executor.executeScript("arguments[0].click();", account);
-		return new AccountHomePage(driver);
+		return new AccountHomePageHybrid(driver);
 	}
 	
-	public LeadHomePage clickLeadLabel()
+	public LeadHomePageHybrid clickLeadLabel()
 	{
 		WebElement leads = driver.findElement(By.xpath("//span[text()='Leads']"));
 		executor.executeScript("arguments[0].click();", leads);
-		return new LeadHomePage(driver);
+		return new LeadHomePageHybrid(driver);
 	}
 
 }

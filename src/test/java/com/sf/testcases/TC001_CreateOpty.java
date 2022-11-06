@@ -3,8 +3,8 @@ package com.sf.testcases;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.sf.base.ProjectSpecMethods;
 import com.sf.pages.HomePage;
+import com.sf.projectspecmethod.ProjectSpecMethods;
 
 public class TC001_CreateOpty extends ProjectSpecMethods{
 	
