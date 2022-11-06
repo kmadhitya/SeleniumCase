@@ -7,6 +7,8 @@
 <test name="Opportunity">
     <classes>
       <class name="com.sf.hybridtestcases.TC001_CreateOptyHybrid"/>
+      <class name="com.sf.hybridtestcases.TC002_EditOptyHybrid"/>
+      <class name="com.sf.hybridtestcases.TC003_DeleteOptyHybrid"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

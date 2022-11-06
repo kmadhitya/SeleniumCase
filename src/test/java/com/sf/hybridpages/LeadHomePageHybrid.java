@@ -5,14 +5,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.sf.projectspecmethod.ProjectSpecMethods;
+import com.sf.hybridprojectspecmethod.ProjectSpecMethods;
 
 public class LeadHomePageHybrid extends ProjectSpecMethods {
 	
-	public LeadHomePageHybrid(ChromeDriver driver)
+	/*public LeadHomePageHybrid(ChromeDriver driver)
 	{
 		this.driver = driver;
-	}
+	}*/
 	
 	public LeadCreatePageHybrid clickNewButton()
 	{

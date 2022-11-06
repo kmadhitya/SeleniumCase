@@ -5,19 +5,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
-import com.sf.projectspecmethod.ProjectSpecMethods;
+import com.sf.hybridprojectspecmethod.ProjectSpecMethods;
 
 public class OpportunityDetailsPageHybrid extends ProjectSpecMethods{
 	
-	public OpportunityDetailsPageHybrid(ChromeDriver driver)
+	/*public OpportunityDetailsPageHybrid(ChromeDriver driver)
 	{
 		this.driver = driver;
-	}
+	}*/
 	
 	public OpportunityDetailsPageHybrid verifyToastMessage(String toastExpectedText)
 	{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty("OpportunityDetailsPage.ToastMessage.xpath"))));
-		String toastText = driver.findElement(By.xpath(prop.getProperty("OpportunityDetailsPage.ToastMessage.xpath"))).getText();
+		explicitWaitStatement("xpath", prop.getProperty("OpportunityDetailsPage.ToastMessage.xpath"));
+		String toastText = getTheActualText(locateElement("xpath", prop.getProperty("OpportunityDetailsPage.ToastMessage.xpath")));
 		System.out.println("Toast message is : " + toastText);
 		Assert.assertEquals(toastText, toastExpectedText);
 		return this;
@@ -25,47 +25,47 @@ public class OpportunityDetailsPageHybrid extends ProjectSpecMethods{
 	
 	public OpportunityDetailsPageHybrid verifyOpportunityName(String name)
 	{
-		String actualText = driver.findElement(By.xpath(prop.getProperty("OpportunityDetailsPage.OpportunityName.xpath"))).getText();
+		String actualText = getTheActualText(locateElement("xpath", prop.getProperty("OpportunityDetailsPage.OpportunityName.xpath")));
 		Assert.assertEquals(actualText, name);
 		return this;
 	}
 	
 	public OpportunityEditPageHybrid editOpportunity()
 	{
-		driver.findElement(By.xpath(prop.getProperty("OpportunityDetailsPage.OpportunityDropdownButton.xpath"))).click();
-		driver.findElement(By.xpath(prop.getProperty("OpportunityDetailsPage.EditOpportunityButton.xpath"))).click();
-		return new OpportunityEditPageHybrid(driver);
+		clickElement(locateElement("xpath", prop.getProperty("OpportunityDetailsPage.OpportunityDropdownButton.xpath")));
+		clickElement(locateElement("xpath", prop.getProperty("OpportunityDetailsPage.EditOpportunityButton.xpath")));
+		return new OpportunityEditPageHybrid();
 	}
 	
 	public OpportunityDetailsPageHybrid deleteOpportunity()
 	{
-		driver.findElement(By.xpath(prop.getProperty("OpportunityDetailsPage.OpportunityDropdownButton.xpath"))).click();
-		driver.findElement(By.xpath(prop.getProperty("OpportunityDetailsPage.DeleteOpportunityButton.xpath"))).click();
+		clickElement(locateElement("xpath", prop.getProperty("OpportunityDetailsPage.OpportunityDropdownButton.xpath")));
+		clickElement(locateElement("xpath", prop.getProperty("OpportunityDetailsPage.DeleteOpportunityButton.xpath")));
 		return this;
 	}
 	
 	public OpportunityHomePageHybrid confirmDelete()
 	{
-		driver.findElement(By.xpath(prop.getProperty("OpportunityDetailsPage.ConfirmDeleteButton.xpath"))).click();
-		return new OpportunityHomePageHybrid(driver);
+		clickElement(locateElement("xpath", prop.getProperty("OpportunityDetailsPage.ConfirmDeleteButton.xpath")));
+		return new OpportunityHomePageHybrid();
 	}
 	
 	public OpportunityDetailsPageHybrid selectDetailsTab()
 	{
-		driver.findElement(By.xpath(prop.getProperty("OpportunityDetailsPage.DetailsTab.xpath"))).click();
+		clickElement(locateElement("xpath", prop.getProperty("OpportunityDetailsPage.DetailsTab.xpath")));
 		return this;
 	}
 	
 	public OpportunityDetailsPageHybrid verifyCloseDate() 
 	{
-		String actualText = driver.findElement(By.xpath(prop.getProperty("OpportunityDetailsPage.CloseDate.xpath"))).getText();		
+		String actualText = getTheActualText(locateElement("xpath", prop.getProperty("OpportunityDetailsPage.CloseDate.xpath")));
 		Assert.assertEquals(actualText, "10/30/2022");
 		return this;
 	}
 	
 	public OpportunityDetailsPageHybrid verifyStage(String stage)
 	{
-		String actualText2 = driver.findElement(By.xpath(prop.getProperty("OpportunityDetailsPage.Stage.xpath"))).getText();
+		String actualText2 = getTheActualText(locateElement("xpath", prop.getProperty("OpportunityDetailsPage.Stage.xpath")));
 		Assert.assertEquals(actualText2, stage);
 		return this;
 	}

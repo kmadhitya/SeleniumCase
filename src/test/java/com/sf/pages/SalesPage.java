@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import com.sf.projectspecmethod.ProjectSpecMethods;
+import com.sf.hybridprojectspecmethod.ProjectSpecMethods;
 
 public class SalesPage extends ProjectSpecMethods{
 	

@@ -3,7 +3,7 @@ package com.sf.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import com.sf.projectspecmethod.ProjectSpecMethods;
+import com.sf.hybridprojectspecmethod.ProjectSpecMethods;
 
 public class OpportunityCreatePage extends ProjectSpecMethods{
 	

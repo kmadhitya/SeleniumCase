@@ -5,27 +5,27 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.sf.projectspecmethod.ProjectSpecMethods;
+import com.sf.hybridprojectspecmethod.ProjectSpecMethods;
 
 public class ServiceConsoleHomePageHybrid extends ProjectSpecMethods{
 	
-	public ServiceConsoleHomePageHybrid(ChromeDriver driver)
+	/*public ServiceConsoleHomePageHybrid(ChromeDriver driver)
 	{
 		this.driver = driver;
-	}
+	}*/
 	
 	public ServiceConsoleHomePageHybrid clickServiceControlDropdown()
 	{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@title='Show Navigation Menu']/lightning-primitive-icon")));
-		driver.findElement(By.xpath("//button[@title='Show Navigation Menu']/lightning-primitive-icon")).click();
+		explicitWaitStatement("xpath", "//button[@title='Show Navigation Menu']/lightning-primitive-icon");
+		clickElement(locateElement("xpath", "//button[@title='Show Navigation Menu']/lightning-primitive-icon"));
 		return this;
 	}
 	
 	public FilesHomePageHybrid clickFiles()
 	{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='listbox']//span[text()='Files']")));
-		driver.findElement(By.xpath("//div[@role='listbox']//span[text()='Files']")).click();
-		return new FilesHomePageHybrid(driver);
+		explicitWaitStatement("xpath", "//div[@role='listbox']//span[text()='Files']");
+		clickElement(locateElement("xpath", "//div[@role='listbox']//span[text()='Files']"));
+		return new FilesHomePageHybrid();
 	}
 
 }

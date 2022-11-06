@@ -11,26 +11,26 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
-import com.sf.projectspecmethod.ProjectSpecMethods;
+import com.sf.hybridprojectspecmethod.ProjectSpecMethods;
 
 public class FilesHomePageHybrid extends ProjectSpecMethods{
 	
-	public FilesHomePageHybrid(ChromeDriver driver)
+	/*public FilesHomePageHybrid(ChromeDriver driver)
 	{
 		this.driver = driver;
-	}
+	}*/
 	
 	public FilesHomePageHybrid clickShowMoreActionDropdown()
 	{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody/tr[1]/td[4]")));
-		driver.findElement(By.xpath("//tbody/tr[1]/td[4]")).click();
+		explicitWaitStatement("xpath", "//tbody/tr[1]/td[4]");
+		clickElement(locateElement("xpath", "//tbody/tr[1]/td[4]"));
 		return this;
 	}
 	
 	public FilesHomePageHybrid clickPublicLink()
 	{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//a[@title='Public Link'])[1]")));
-		driver.findElement(By.xpath("(//a[@title='Public Link'])[1]")).click();
+		explicitWaitStatement("xpath", "(//a[@title='Public Link'])[1]");
+		clickElement(locateElement("xpath", "(//a[@title='Public Link'])[1]"));
 		return this;
 	}
 	

@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
-import com.sf.projectspecmethod.ProjectSpecMethods;
+import com.sf.hybridprojectspecmethod.ProjectSpecMethods;
 
 public class AccountDetailsPageHybrid extends ProjectSpecMethods{
 	
@@ -52,7 +52,7 @@ public class AccountDetailsPageHybrid extends ProjectSpecMethods{
 	public AccountHomePageHybrid confirmDeleteAccount()
 	{
 		driver.findElement(By.xpath(prop.getProperty("AccountDetailsPage.ConfirmDeleteButton.xpath"))).click();
-		return new AccountHomePageHybrid(driver);
+		return new AccountHomePageHybrid();
 	}
 	
 	

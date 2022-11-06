@@ -4,34 +4,33 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import com.sf.projectspecmethod.ProjectSpecMethods;
+import com.sf.hybridprojectspecmethod.ProjectSpecMethods;
 
 public class SalesPageHybrid extends ProjectSpecMethods{
 	
-	public SalesPageHybrid(ChromeDriver driver)
+	/*public SalesPageHybrid(ChromeDriver driver)
 	{
 		this.driver = driver;
-	}
+	}*/
 	
 	public OpportunityHomePageHybrid clickOpportunityLabel()
 	{
-		WebElement opportunity = driver.findElement(By.xpath(prop.getProperty("SalesPage.OpportunityLabel.xpath")));
-		executor.executeScript("arguments[0].click();", opportunity);
-		return new OpportunityHomePageHybrid(driver);
+		//WebElement opportunity = driver.findElement(By.xpath(prop.getProperty("SalesPage.OpportunityLabel.xpath")));
+		//executor.executeScript("arguments[0].click();", opportunity);
+		clickElementUsingJavaScript(locateElement("xpath", prop.getProperty("SalesPage.OpportunityLabel.xpath")));
+		return new OpportunityHomePageHybrid();
 	}
 	
 	public AccountHomePageHybrid clickAccountLabel()
 	{
-		WebElement account = driver.findElement(By.xpath(prop.getProperty("SalesPage.AccountLabel.xpath")));
-		executor.executeScript("arguments[0].click();", account);
-		return new AccountHomePageHybrid(driver);
+		clickElementUsingJavaScript(locateElement("xpath", prop.getProperty("SalesPage.AccountLabel.xpath")));
+		return new AccountHomePageHybrid();
 	}
 	
 	public LeadHomePageHybrid clickLeadLabel()
 	{
-		WebElement leads = driver.findElement(By.xpath("//span[text()='Leads']"));
-		executor.executeScript("arguments[0].click();", leads);
-		return new LeadHomePageHybrid(driver);
+		clickElementUsingJavaScript(locateElement("xpath", "//span[text()='Leads']"));
+		return new LeadHomePageHybrid();
 	}
 
 }

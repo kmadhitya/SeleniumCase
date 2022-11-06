@@ -3,8 +3,8 @@ package com.sf.testcases;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.sf.hybridprojectspecmethod.ProjectSpecMethods;
 import com.sf.pages.HomePage;
-import com.sf.projectspecmethod.ProjectSpecMethods;
 
 public class TC007_CreateALead extends ProjectSpecMethods {
 	

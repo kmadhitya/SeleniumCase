@@ -1,4 +1,4 @@
-package com.sf.projectspecmethod;
+package com.sf.hybridprojectspecmethod;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,7 +21,7 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 
-import com.sf.base.Base;
+import com.sf.hybridbase.Base;
 import com.sf.utilities.ReadExcel;
 
 import io.github.bonigarcia.wdm.WebDriverManager;

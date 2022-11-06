@@ -7,14 +7,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
-import com.sf.projectspecmethod.ProjectSpecMethods;
+import com.sf.hybridprojectspecmethod.ProjectSpecMethods;
 
 public class AccountHomePageHybrid extends ProjectSpecMethods{
 	
-	public AccountHomePageHybrid(ChromeDriver driver)
+	/*public AccountHomePageHybrid(ChromeDriver driver)
 	{
 		this.driver = driver;
-	}
+	}*/
 	
 	public AccountCreatePageHybrid clickNewButton()
 	{

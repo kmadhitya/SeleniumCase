@@ -1,7 +1,6 @@
-package com.sf.base;
+package com.sf.hybridbase;
 
 import java.time.Duration;
-import java.util.Properties;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -11,9 +10,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.sf.hybridactions.BrowserActions;
+import com.sf.hybridactions.ElementActions;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class Base {
+public class Base implements BrowserActions, ElementActions {
 	
 	public static ChromeDriver driver;
 	public static JavascriptExecutor executor;
@@ -63,6 +65,12 @@ public class Base {
 		ele.sendKeys(text);
 	}
 	
+	public void clearAndTypeText(WebElement ele, String text)
+	{
+		ele.clear();
+		ele.sendKeys(text);
+	}
+	
 	public void typeTextUsingJavaScript(WebElement ele, String text)
 	{
 		ele.sendKeys(text);
@@ -81,6 +89,11 @@ public class Base {
 	public String getTitleOfThePage()
 	{
 		return driver.getTitle();
+	}
+	
+	public String getTheActualText(WebElement ele)
+	{
+		return ele.getText();
 	}
 	
 	public void explicitWaitStatement(String locator, String locatorValue)
