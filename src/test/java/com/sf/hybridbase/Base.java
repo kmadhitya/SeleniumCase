@@ -60,6 +60,26 @@ public class Base implements BrowserActions, ElementActions {
 		driver.quit();
 	}
 	
+	public void switchToTheIFrameUsingID(int value)
+	{
+		driver.switchTo().frame(value);
+	}
+	
+	public void switchToTheIFrameUsingName(String name)
+	{
+		driver.switchTo().frame(name);
+	}
+	
+	public void switchToTheIFrameUsingWebElement(WebElement ele)
+	{
+		driver.switchTo().frame(ele);
+	}
+	
+	public void switchBackFromFrame()
+	{
+		driver.switchTo().defaultContent();
+	}
+	
 	public void typeText(WebElement ele, String text)
 	{
 		ele.sendKeys(text);
@@ -83,7 +103,7 @@ public class Base implements BrowserActions, ElementActions {
 	
 	public void clickElementUsingJavaScript(WebElement ele)
 	{
-		executor.executeScript("arguments[0].click();", ele);
+		driver.executeScript("arguments[0].click();", ele);
 	}
 	
 	public String getTitleOfThePage()
@@ -107,6 +127,12 @@ public class Base implements BrowserActions, ElementActions {
 			case "xpath":
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorValue)));
 		}
+	}
+	
+	public void explicitWaitForFrame(WebElement ele)
+	{
+		wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(ele));
 	}
 
 }

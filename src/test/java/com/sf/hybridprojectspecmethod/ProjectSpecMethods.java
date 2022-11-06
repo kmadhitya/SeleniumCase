@@ -80,7 +80,7 @@ public class ProjectSpecMethods extends Base{
 			clickElement(locateElement("xpath", "(//a[text()='Switch to Lightning Experience'])[1]")); 
 		}
 	}
-	@AfterMethod
+	/*@AfterMethod
 	public void closeBrowser()
 	{
 		System.out.println("At After Test");
@@ -91,6 +91,6 @@ public class ProjectSpecMethods extends Base{
 	{
 		System.out.println("At After Suite");
 		quitTheBrowser();
-	}
+	}*/
 
 }

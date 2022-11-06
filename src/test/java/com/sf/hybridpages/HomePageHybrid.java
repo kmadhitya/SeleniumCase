@@ -45,5 +45,12 @@ public class HomePageHybrid extends ProjectSpecMethods{
 		clickElement(locateElement("xpath", prop.getProperty("HomePage.ServiceConsole.xpath")));
 		return new ServiceConsoleHomePageHybrid();
 	}
+	
+	public AppLauncherPageHybrid clickViewAll()
+	{
+		explicitWaitStatement("xpath", prop.getProperty("HomePage.ViewAll.xpath"));
+		clickElement(locateElement("xpath", prop.getProperty("HomePage.ViewAll.xpath")));
+		return new AppLauncherPageHybrid();
+	}
 
 }

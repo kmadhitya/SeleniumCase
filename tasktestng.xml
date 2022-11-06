@@ -6,9 +6,7 @@
 <parameter name = "password" value = "Testleaf$321" />
 <test name="Opportunity">
     <classes>
-      <class name="com.sf.hybridtestcases.TC001_CreateOptyHybrid"/>
-      <class name="com.sf.hybridtestcases.TC002_EditOptyHybrid"/>
-      <class name="com.sf.hybridtestcases.TC003_DeleteOptyHybrid"/>
+      <class name="com.sf.hybridtestcases.TC010_CreateDashboardHybrid"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
