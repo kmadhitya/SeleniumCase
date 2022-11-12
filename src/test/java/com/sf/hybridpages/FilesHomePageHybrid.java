@@ -36,36 +36,36 @@ public class FilesHomePageHybrid extends ProjectSpecMethods{
 	
 	public FilesHomePageHybrid clickDownload()
 	{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//a[@title='Download'])[1]")));
-		driver.findElement(By.xpath("(//a[@title='Download'])[1]")).click();
+		explicitWaitStatement("xpath", "(//a[@title='Download'])[1]");
+		clickElement(locateElement("xpath", "(//a[@title='Download'])[1]"));
 		return this;
 	}
 	
 	public FilesHomePageHybrid clickShare()
 	{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//a[@title='Share'])[1]")));
-		driver.findElement(By.xpath("(//a[@title='Share'])[1]")).click();
+		explicitWaitStatement("xpath", "(//a[@title='Share'])[1]");
+		clickElement(locateElement("xpath", "(//a[@title='Share'])[1]"));
 		return this;
 	}
 	
 	public FilesHomePageHybrid clickSearchPeople()
 	{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@title='Search People']")));
-		driver.findElement(By.xpath("//input[@title='Search People']")).click();
+		explicitWaitStatement("xpath", "//input[@title='Search People']");
+		clickElement(locateElement("xpath", "//input[@title='Search People']"));
 		return this;
 	}
 	
 	public FilesHomePageHybrid selectDerrick()
 	{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@title='Derrick Dsouza']")));
-		driver.findElement(By.xpath("//div[@title='Derrick Dsouza']")).click();
+		explicitWaitStatement("xpath", "//div[@title='Derrick Dsouza']");
+		clickElement(locateElement("xpath", "//div[@title='Derrick Dsouza']"));
 		return this;
 	}
 	
 	public FilesHomePageHybrid verifyCantShareWithOwnerMessage()
 	{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='lookupCmp']/ul/li")));		
-		String actualText = driver.findElement(By.xpath("//div[@class='lookupCmp']/ul/li")).getText();
+		explicitWaitStatement("xpath", "//div[@class='lookupCmp']/ul/li");
+		String actualText = getTheActualText(locateElement("xpath", "//div[@class='lookupCmp']/ul/li"));
 		Assert.assertEquals(actualText, "Can't share file with the file owner.");
 		return this;
 	}
@@ -74,8 +74,9 @@ public class FilesHomePageHybrid extends ProjectSpecMethods{
 	
 	public FilesHomePageHybrid verifyLinkTextFieldIsDisabled()
 	{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='publicLinkURL']")));
-		String attribute = driver.findElement(By.xpath("//input[@name='publicLinkURL']")).getAttribute("readonly");
+		explicitWaitStatement("xpath", "//input[@name='publicLinkURL']");
+		//String attribute = driver.findElement(By.xpath("//input[@name='publicLinkURL']")).getAttribute("readonly");
+		String attribute = getAttributeValue(locateElement("xpath", "//input[@name='publicLinkURL']"), "readonly");
 		System.out.println(attribute);
 		//Assert.assertFalse(condition);
 		Assert.assertNotNull(attribute);
@@ -84,15 +85,15 @@ public class FilesHomePageHybrid extends ProjectSpecMethods{
 	
 	public FilesHomePageHybrid closePublicLinkWindow()
 	{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@title='Close this window']//lightning-primitive-icon")));
-		driver.findElement(By.xpath("//button[@title='Close this window']//lightning-primitive-icon")).click();
+		explicitWaitStatement("xpath", "//button[@title='Close this window']//lightning-primitive-icon");
+		clickElement(locateElement("xpath", "//button[@title='Close this window']//lightning-primitive-icon"));
 		return this;
 	}
 	
 	public FilesHomePageHybrid clickUploadFiles()
 	{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@title='Upload Files']")));
-		driver.findElement(By.xpath("//div[@title='Upload Files']")).click();
+		explicitWaitStatement("xpath", "//div[@title='Upload Files']");
+		clickElement(locateElement("xpath", "//div[@title='Upload Files']"));
 		return this;
 	}
 	
@@ -121,15 +122,15 @@ public class FilesHomePageHybrid extends ProjectSpecMethods{
 	
 	public FilesHomePageHybrid doneUploadFiles()
 	{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Done']")));
-		driver.findElement(By.xpath("//span[text()='Done']")).click();
+		explicitWaitStatement("xpath", "//span[text()='Done']");
+		clickElement(locateElement("xpath", "//span[text()='Done']"));
 		return this;
 	}
 	
 	public FilesHomePageHybrid clickViewFileDetails()
 	{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//a[@title='View File Details'])[1]")));
-		driver.findElement(By.xpath("(//a[@title='View File Details'])[1]")).click();
+		explicitWaitStatement("xpath", "(//a[@title='View File Details'])[1]");
+		clickElement(locateElement("xpath", "(//a[@title='View File Details'])[1]"));
 		return this;
 	}
 	

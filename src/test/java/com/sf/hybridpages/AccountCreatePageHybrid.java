@@ -7,28 +7,28 @@ import com.sf.hybridprojectspecmethod.ProjectSpecMethods;
 
 public class AccountCreatePageHybrid extends ProjectSpecMethods{
 	
-	public AccountCreatePageHybrid(ChromeDriver driver)
+	/*public AccountCreatePageHybrid(ChromeDriver driver)
 	{
 		this.driver = driver;
-	}
+	}*/
 	
 	public AccountCreatePageHybrid enterAccountName(String accountName)
 	{
-		driver.findElement(By.xpath(prop.getProperty("AccountCreatePage.AccountName.xpath"))).sendKeys(accountName);
+		typeText(locateElement("xpath", prop.getProperty("AccountCreatePage.AccountName.xpath")), accountName);
 		return this;
 	}
 	
 	public AccountCreatePageHybrid selectOwnershipAsPublic()
 	{
-		driver.findElement(By.xpath(prop.getProperty("AccountCreatePage.Ownership.xpath"))).click();
-		driver.findElement(By.xpath(prop.getProperty("AccountCreatePage.OwnershipAsPublic.xpath"))).click();
+		clickElement(locateElement("xpath", prop.getProperty("AccountCreatePage.Ownership.xpath")));
+		clickElement(locateElement("xpath", prop.getProperty("AccountCreatePage.OwnershipAsPublic.xpath")));
 		return this;
 	}
 	
 	public AccountDetailsPageHybrid clickSaveButton()
 	{
-		driver.findElement(By.xpath(prop.getProperty("AccountCreatePage.SaveButton.xpath"))).click();
-		return new AccountDetailsPageHybrid(driver);
+		clickElement(locateElement("xpath", prop.getProperty("AccountCreatePage.SaveButton.xpath")));
+		return new AccountDetailsPageHybrid();
 	}
 
 }

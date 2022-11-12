@@ -19,6 +19,4 @@ public class TC006_DeleteAccnt extends ProjectSpecMethods{
 		new HomePage(driver).clickAppLauncher().clickSales().clickAccountLabel().searchAccount(searchText).openFirstAccount().deleteAccount()
 		.confirmDeleteAccount().clearSearchText().searchAccount(searchText).verifyNoItemsToDisplay(expectedText);
 	}
-
-
 }

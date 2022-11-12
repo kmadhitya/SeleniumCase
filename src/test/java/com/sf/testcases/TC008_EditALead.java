@@ -18,8 +18,5 @@ public class TC008_EditALead extends ProjectSpecMethods {
 		
 		new HomePage(driver).clickAppLauncher().clickSales().clickLeadLabel().openLead().editLead().enterLastName(lastName)
 		.selectLeadStatusAsWorkingContacted().clickSaveButton().selectDetailsTab().verifyLeadStatus(expected);
-		
-		
 	}
-
 }

@@ -18,7 +18,5 @@ public class TC007_CreateALead extends ProjectSpecMethods {
 		
 		new HomePage(driver).clickAppLauncher().clickSales().clickLeadLabel().clickNewButton().selectSalutationAsMr()
 		.enterLastName(lastName).enterCompanyName(company).clickSaveButton().verifyLeadName(expected);
-		
 	}
-
 }

@@ -4,6 +4,7 @@ import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -85,6 +86,11 @@ public class Base implements BrowserActions, ElementActions {
 		ele.sendKeys(text);
 	}
 	
+	public void typeTextAndEnter(WebElement ele, String text)
+	{
+		ele.sendKeys(text, Keys.ENTER);
+	}
+	
 	public void clearAndTypeText(WebElement ele, String text)
 	{
 		ele.clear();
@@ -94,6 +100,7 @@ public class Base implements BrowserActions, ElementActions {
 	public void typeTextUsingJavaScript(WebElement ele, String text)
 	{
 		ele.sendKeys(text);
+		driver.executeScript("arguments[0].value='"+ text +"';", ele);
 	}
 	
 	public void clickElement(WebElement ele)
@@ -114,6 +121,11 @@ public class Base implements BrowserActions, ElementActions {
 	public String getTheActualText(WebElement ele)
 	{
 		return ele.getText();
+	}
+	
+	public String getAttributeValue(WebElement ele, String attributeName)
+	{
+		return ele.getAttribute(attributeName);
 	}
 	
 	public void explicitWaitStatement(String locator, String locatorValue)

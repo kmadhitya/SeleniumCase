@@ -9,34 +9,34 @@ import com.sf.hybridprojectspecmethod.ProjectSpecMethods;
 
 public class LeadDetailsPageHybrid extends ProjectSpecMethods {
 	
-	public LeadDetailsPageHybrid(ChromeDriver driver)
+	/*public LeadDetailsPageHybrid(ChromeDriver driver)
 	{
 		this.driver = driver;
-	}
+	}*/
 	
 	public LeadDetailsPageHybrid verifyLeadName(String expectedName)
 	{
-		String actualText = driver.findElement(By.xpath("//div[text()='Lead']/following-sibling::slot//lightning-formatted-name")).getText();
+		String actualText = getTheActualText(locateElement("xpath", "//div[text()='Lead']/following-sibling::slot//lightning-formatted-name"));
 		Assert.assertEquals(actualText, expectedName);
 		return this;
 	}
 	
 	public LeadEditPageHybrid editLead()
 	{
-		driver.findElement(By.xpath("//button[text()='Submit for Approval']/ancestor::li/following-sibling::li//button")).click();
-		driver.findElement(By.xpath("//button[text()='Submit for Approval']/ancestor::li/following-sibling::li//div//span[text()='Edit']")).click();
-		return new LeadEditPageHybrid(driver);
+		clickElement(locateElement("xpath", "//button[text()='Submit for Approval']/ancestor::li/following-sibling::li//button"));
+		clickElement(locateElement("xpath", "//button[text()='Submit for Approval']/ancestor::li/following-sibling::li//div//span[text()='Edit']"));
+		return new LeadEditPageHybrid();
 	}
 	
 	public LeadDetailsPageHybrid selectDetailsTab()
 	{
-		driver.findElement(By.xpath("(//a[text()='Details'])[1]")).click();
+		clickElement(locateElement("xpath", "(//a[text()='Details'])[1]"));
 		return this;
 	}
 	
 	public LeadDetailsPageHybrid verifyLeadStatus(String expected) 
 	{
-		String actualText = driver.findElement(By.xpath("//span[text()='Lead Status']/following::span[1]//lightning-formatted-text")).getText();
+		String actualText = getTheActualText(locateElement("xpath", "//span[text()='Lead Status']/following::span[1]//lightning-formatted-text"));
 		Assert.assertEquals(actualText, expected);
 		return this;
 	}

@@ -16,16 +16,15 @@ public class LeadHomePageHybrid extends ProjectSpecMethods {
 	
 	public LeadCreatePageHybrid clickNewButton()
 	{
-		driver.findElement(By.xpath(prop.getProperty("AccountHomePage.NewButton.xpath"))).click();
-		return new LeadCreatePageHybrid(driver);
+		clickElement(locateElement("xpath", prop.getProperty("AccountHomePage.NewButton.xpath")));
+		return new LeadCreatePageHybrid();
 	}
 	
 	public LeadDetailsPageHybrid openLead()
 	{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//a[text()='Kumar'])[1]")));
-		WebElement leadName = driver.findElement(By.xpath("(//a[text()='Kumar'])[1]"));
-		executor.executeScript("arguments[0].click();", leadName);
-		return new LeadDetailsPageHybrid(driver);
+		explicitWaitStatement("xpath", "(//a[text()='Kumar'])[1]");
+		clickElementUsingJavaScript(locateElement("xpath", "(//a[text()='Kumar'])[1]"));
+		return new LeadDetailsPageHybrid();
 	}
 
 }
