@@ -55,8 +55,4 @@ public class AccountDetailsPage extends ProjectSpecMethods{
 		return new AccountHomePage(driver);
 	}
 	
-	
-	
-	
-
 }

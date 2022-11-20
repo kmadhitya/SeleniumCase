@@ -28,6 +28,19 @@ public class LeadDetailsPage extends ProjectSpecMethods {
 		return new LeadEditPage(driver);
 	}
 	
+	public LeadDetailsPage deleteLead()
+	{
+		driver.findElement(By.xpath("//button[text()='Submit for Approval']/ancestor::li/following-sibling::li//button")).click();
+		driver.findElement(By.xpath("//button[text()='Submit for Approval']/ancestor::li/following-sibling::li//div//span[text()='Delete']")).click();
+		return this;
+	}
+	
+	public LeadHomePage confirmDelete()
+	{
+		driver.findElement(By.xpath("//div[text()='Are you sure you want to delete this lead?']/ancestor::div/following-sibling::div//button//span[text()='Delete']")).click();
+		return new LeadHomePage(driver);
+	}
+	
 	public LeadDetailsPage selectDetailsTab()
 	{
 		driver.findElement(By.xpath("(//a[text()='Details'])[1]")).click();

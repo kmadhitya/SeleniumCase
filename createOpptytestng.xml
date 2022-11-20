@@ -7,18 +7,9 @@
 <listeners>
       <listener class-name = "com.salesforce.utils.RetryFailedTestCases"></listener>
 </listeners>
-      <test name = "Opportunity">
+      <test name = "Lead">
       <classes>
-      <class name="com.sf.testcases.TC001_CreateOpty"/>
-      <class name="com.sf.testcases.TC002_EditOpty"/>
-      <class name="com.sf.testcases.TC003_DeleteOpty"/>
-      </classes>
-      </test>
-      <test name = "Account">
-      <classes>
-      <class name="com.sf.testcases.TC004_CreateAccnt"/>
-      <class name="com.sf.testcases.TC005_EditAccnt"/>
-      <class name="com.sf.testcases.TC006_DeleteAccnt"/>
+      <class name="com.sf.testcases.TC009_DeleteALead"/>
       </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

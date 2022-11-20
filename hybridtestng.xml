@@ -7,14 +7,6 @@
 <test name = "Account">
       <classes>
       <class name="com.sf.hybridtestcases.TC004_CreateAccntHybrid"/>
-      <class name="com.sf.hybridtestcases.TC005_EditAccntHybrid"/>
-      <class name="com.sf.hybridtestcases.TC006_DeleteAccntHybrid"/>
-      </classes>
-      </test>
-      <test name = "Lead">
-      <classes>
-      <class name="com.sf.hybridtestcases.TC007_CreateALeadHybrid"/>
-      <class name="com.sf.hybridtestcases.TC008_EditALeadHybrid"/>
       </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

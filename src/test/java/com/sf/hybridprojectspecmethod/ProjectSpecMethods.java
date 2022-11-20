@@ -16,6 +16,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
@@ -31,9 +32,10 @@ public class ProjectSpecMethods extends Base{
 	public String excelFileName;
 	public static Properties prop;
 	@BeforeSuite
-	public void setupDriver()
+	public void init()
 	{
 		System.out.println("At Before Suite");
+		createTestReport();
 	}
 	
 	@DataProvider(name = "excelData")
@@ -43,11 +45,19 @@ public class ProjectSpecMethods extends Base{
 		return data;
 	}
 	
+	@BeforeClass
+	public void beforeClass()
+	{
+		System.out.println("At Before Class");
+		createTestcaseEntry("testcaseName", "testDesc", "author", "category");
+	}
+	
 	//@Parameters({"url","username","password"})  String url, String username, String pwd
 	@BeforeMethod
 	public void launchBrowserAndLoadURL() throws IOException
 	{
 		System.out.println("At Before Test");
+		startIteration("testcaseName");
 		//File downloadFolder = new File("D:\\Workspace\\Selenium\\files\\");
 		//downloadFolder.mkdir();
 		//Map<String, Object> preferences = new HashMap<String, Object>();
@@ -80,7 +90,7 @@ public class ProjectSpecMethods extends Base{
 			clickElement(locateElement("xpath", "(//a[text()='Switch to Lightning Experience'])[1]")); 
 		}
 	}
-	/*@AfterMethod
+	@AfterMethod
 	public void closeBrowser()
 	{
 		System.out.println("At After Test");
@@ -91,6 +101,7 @@ public class ProjectSpecMethods extends Base{
 	{
 		System.out.println("At After Suite");
 		quitTheBrowser();
-	}*/
+		publish();
+	}
 
 }
