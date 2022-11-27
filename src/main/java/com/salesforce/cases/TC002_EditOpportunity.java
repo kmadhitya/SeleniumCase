@@ -10,11 +10,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import com.salesforce.base.Base;
+import com.salesforce.base.SpecificMethods;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class TC002_EditOpportunity extends Base {
+public class TC002_EditOpportunity extends SpecificMethods {
 
 	@BeforeTest
 	public void setExcelFileName()

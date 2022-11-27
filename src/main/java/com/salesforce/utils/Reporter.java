@@ -22,7 +22,7 @@ public abstract class Reporter {
 	public void createTestReport()
 	{
 		String date = new SimpleDateFormat("dd-MMM-yy").format(new Date());
-		File folder = new File("./reports/"+date);
+		folder = new File("./reports/"+date);
 		if(!folder.exists())
 		{
 			folder.mkdir();
@@ -55,17 +55,25 @@ public abstract class Reporter {
 		MediaEntityModelProvider snap = null;
 		try
 		{
-			snap = MediaEntityBuilder.createScreenCaptureFromPath("./snap.png").build();
+			snap = MediaEntityBuilder.createScreenCaptureFromPath("./../../"+folder+"/"+snapNumber+".png").build();
 		}
 		catch(IOException e)
 		{}
 		if (status.equalsIgnoreCase("PASS"))
 		{
-			test.log(Status.PASS, step);
+			node.log(Status.PASS, step, snap);
 		}
 		else if(status.equalsIgnoreCase("FAIL"))
 		{
-			test.log(Status.FAIL, step, snap);
+			node.log(Status.FAIL, step, snap);
+		}
+		else if(status.equalsIgnoreCase("WARNING"))
+		{
+			node.log(Status.WARNING, step, snap);
+		}
+		else if(status.equalsIgnoreCase("INFO"))
+		{
+			node.log(Status.INFO, step);
 		}
 	}
 	

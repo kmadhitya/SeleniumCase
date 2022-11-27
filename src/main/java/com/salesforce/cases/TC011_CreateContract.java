@@ -18,9 +18,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import com.salesforce.base.Base;
+import com.salesforce.base.SpecificMethods;
 
-public class TC011_CreateContract extends Base {
+public class TC011_CreateContract extends SpecificMethods {
 
 	@BeforeTest
 	public void setExcelFileName()

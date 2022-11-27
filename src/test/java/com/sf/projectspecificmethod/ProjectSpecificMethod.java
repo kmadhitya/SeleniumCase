@@ -1,33 +1,21 @@
-package com.sf.hybridprojectspecmethod;
+package com.sf.projectspecificmethod;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Parameters;
 
-import com.sf.hybridbase.Base;
+import com.salesforce.base.SalesforceBase;
 import com.sf.utilities.ReadExcel;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-
-public class ProjectSpecMethods extends Base{
+public class ProjectSpecificMethod extends SalesforceBase{
 	
 	public String excelFileName;
 	public static Properties prop;
@@ -52,6 +40,7 @@ public class ProjectSpecMethods extends Base{
 		createTestcaseEntry("testcaseName", "testDesc", "author", "category");
 	}
 	
+	//@Parameters({"url","username","password"})
 	@BeforeMethod
 	public void launchBrowserAndLoadURL() throws IOException
 	{
@@ -62,7 +51,9 @@ public class ProjectSpecMethods extends Base{
 		//Map<String, Object> preferences = new HashMap<String, Object>();
 		//preferences.put("profile.default_content_settings.popups", 0);
 		//preferences.put("download.default_directory", "D:\\Workspace\\Selenium\\files\\");
+		
 		//options.setExperimentalOption("prefs", preferences);
+		
 		prop = new Properties();
 		FileInputStream fis = new FileInputStream(new File("src/main/resources/config.properties"));
 		prop.load(fis);

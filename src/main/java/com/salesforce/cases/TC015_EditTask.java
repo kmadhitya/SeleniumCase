@@ -10,9 +10,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import com.salesforce.base.Base;
+import com.salesforce.base.SpecificMethods;
 
-public class TC015_EditTask extends Base {
+public class TC015_EditTask extends SpecificMethods {
 	
 	@BeforeTest
 	public void setExcelFileName()

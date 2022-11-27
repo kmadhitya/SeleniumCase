@@ -21,7 +21,7 @@ import com.salesforce.utils.ExcelUtil;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class Base {
+public class SpecificMethods {
 	public static ChromeDriver driver;
 	public String excelFileName;
 	@BeforeSuite

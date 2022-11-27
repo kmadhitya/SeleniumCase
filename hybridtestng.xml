@@ -6,7 +6,7 @@
 <parameter name = "password" value = "Testleaf$321" />
 <test name = "Account">
       <classes>
-      <class name="com.sf.hybridtestcases.TC004_CreateAccntHybrid"/>
+      <class name="com.sf.hybridtestcases.TC001_CreateOptyHybrid"/>
       </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

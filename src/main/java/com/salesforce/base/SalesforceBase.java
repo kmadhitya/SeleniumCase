@@ -1,4 +1,4 @@
-package com.sf.hybridbase;
+package com.salesforce.base;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,12 +17,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.salesforce.utils.Reporter;
-import com.sf.hybridactions.BrowserActions;
-import com.sf.hybridactions.ElementActions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class Base extends Reporter implements BrowserActions, ElementActions {
+public class SalesforceBase extends Reporter{
 	
 	public static ChromeDriver driver;
 	public static JavascriptExecutor executor;
@@ -30,13 +28,10 @@ public class Base extends Reporter implements BrowserActions, ElementActions {
 	public static ChromeOptions options;
 	
 	private static final ThreadLocal<RemoteWebDriver> remoteWebDriver = new ThreadLocal<RemoteWebDriver>();
-	private static final ThreadLocal<WebDriverWait> webDriverWait = new ThreadLocal<WebDriverWait>();
 	
 	public void setDriver()
 	{
-		options = new ChromeOptions();
-		options.addArguments("--disable-notifications");
-		remoteWebDriver.set(new ChromeDriver(options));
+		remoteWebDriver.set(new ChromeDriver());
 	}
 	
 	public RemoteWebDriver getDriver()
@@ -44,27 +39,20 @@ public class Base extends Reporter implements BrowserActions, ElementActions {
 		return remoteWebDriver.get();
 	}
 	
-	public void setWait()
-	{
-		webDriverWait.set(new WebDriverWait(getDriver(), Duration.ofSeconds(10)));
-	}
-	
-	public WebDriverWait getWait()
-	{
-		return webDriverWait.get();
-	}
-	
 	public void openURLInChromeBrowser(String url)
 	{
+		//System.setProperty("webdriver.chrome.drive", "./drivers/chromedriver");
 		WebDriverManager.chromedriver().setup();
-		setDriver();
-		getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		executor = (JavascriptExecutor)getDriver();
-		wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+		options = new ChromeOptions();
+		options.addArguments("--disable-notifications");
+		driver = new ChromeDriver(options);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		executor = (JavascriptExecutor)driver;
+		wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		try
 		{
-			getDriver().navigate().to(url);
-			getDriver().manage().window().maximize();
+			driver.navigate().to(url);
+			driver.manage().window().maximize();
 			reportStep(url+" is launched ", "PASS");
 		}
 		catch(Exception e)
@@ -79,9 +67,9 @@ public class Base extends Reporter implements BrowserActions, ElementActions {
 		switch (loc)
 		{
 		    case "id":
-			    return getDriver().findElement(By.id(value));
+			    return driver.findElement(By.id(value));
 			case "xpath":
-				return getDriver().findElement(By.xpath(value));
+				return driver.findElement(By.xpath(value));
 	
 		}
 		return null;
@@ -89,83 +77,32 @@ public class Base extends Reporter implements BrowserActions, ElementActions {
 	
 	public void closeTheBrowser()
 	{
-		try
-		{
-			getDriver().close();
-			reportStep("Browser is closed ", "INFO");
-		}
-		catch(Exception e)
-		{
-			reportStep("Browser is not closed ", "FAIL");
-		}
-		
+		driver.close();
 	}
 	
 	public void quitTheBrowser()
 	{
-		try
-		{
-			getDriver().quit();
-			reportStep("Browser is quit ", "INFO");
-		}
-		catch(Exception e)
-		{
-			reportStep("Browser is not quit", "FAIL");
-		}
-		
+		driver.quit();
 	}
 	
 	public void switchToTheIFrameUsingID(int value)
 	{
-		try
-		{
-			getDriver().switchTo().frame(value);
-			reportStep("Switched to Frame using: "+value, "PASS");
-		}
-		catch(Exception e)
-		{
-			reportStep("Failed switching to Frame using: "+value, "FAIL");
-		}		
+		driver.switchTo().frame(value);
 	}
 	
 	public void switchToTheIFrameUsingName(String name)
 	{
-		try
-		{
-			getDriver().switchTo().frame(name);
-			reportStep("Switched to Frame using: "+name, "PASS");
-		}
-		catch(Exception e)
-		{
-			reportStep("Failed switching to Frame using: "+name, "FAIL");
-		}	
+		driver.switchTo().frame(name);
 	}
 	
 	public void switchToTheIFrameUsingWebElement(WebElement ele)
 	{
-		try
-		{
-			getDriver().switchTo().frame(ele);
-			reportStep("Switched to Frame using: "+ele, "PASS");
-		}
-		catch(Exception e)
-		{
-			reportStep("Failed switching to Frame using: "+ele, "FAIL");
-		}	
+		driver.switchTo().frame(ele);
 	}
 	
 	public void switchBackFromFrame()
 	{
-		try
-		{
-			getDriver().switchTo().defaultContent();
-			reportStep("Switched back from frame ", "PASS");
-		}
-		catch(Exception e)
-		{
-			reportStep("Failed switching back from Frame ", "FAIL");
-		}	
-		
+		driver.switchTo().defaultContent();
 	}
 	
 	public void typeText(WebElement ele, String text)
@@ -214,7 +151,7 @@ public class Base extends Reporter implements BrowserActions, ElementActions {
 		try
 		{
 			ele.sendKeys(text);
-			getDriver().executeScript("arguments[0].value='"+ text +"';", ele);
+			driver.executeScript("arguments[0].value='"+ text +"';", ele);
 			reportStep(text+" is typed on the "+ele, "PASS");
 		}
 		catch(Exception e)
@@ -240,7 +177,7 @@ public class Base extends Reporter implements BrowserActions, ElementActions {
 	{
 		try
 		{
-			getDriver().executeScript("arguments[0].click();", ele);
+			driver.executeScript("arguments[0].click();", ele);
 			reportStep(ele+" is clicked ", "PASS");
 		}
 		catch(Exception e)
@@ -251,7 +188,7 @@ public class Base extends Reporter implements BrowserActions, ElementActions {
 	
 	public String getTitleOfThePage()
 	{
-		return getDriver().getTitle();
+		return driver.getTitle();
 	}
 	
 	public String getTheActualText(WebElement ele)
@@ -266,29 +203,27 @@ public class Base extends Reporter implements BrowserActions, ElementActions {
 	
 	public void explicitWaitStatement(String locator, String locatorValue)
 	{
-		//wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		setWait();
+		wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		String loc = locator.toLowerCase();
 		switch (loc)
 		{
 		    case "id":
-		    	getWait().until(ExpectedConditions.visibilityOfElementLocated(By.id(locatorValue)));
+		    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(locatorValue)));
 			case "xpath":
-				getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorValue)));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorValue)));
 		}
 	}
 	
 	public void explicitWaitForFrame(WebElement ele)
 	{
-		//wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		setWait();
-		getWait().until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(ele));
+		wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(ele));
 	}
 
 	@Override
 	public long takeSnap() {
 		long number = ( long ) Math.floor(Math.random() * 900000000L) + 10000000L;
-		File src = getDriver().getScreenshotAs(OutputType.FILE);
+		File src = driver.getScreenshotAs(OutputType.FILE);
 		try {
 			FileUtils.copyFile(src, new File(folder+"/"+number+".png"));
 		} catch (IOException e) {
@@ -297,5 +232,4 @@ public class Base extends Reporter implements BrowserActions, ElementActions {
 		}
 		return number;
 	}
-
 }

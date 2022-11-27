@@ -15,12 +15,12 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.salesforce.base.Base;
+import com.salesforce.base.SpecificMethods;
 import com.salesforce.utils.ExcelUtil;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class TC001_CreateOpportunity extends Base {
+public class TC001_CreateOpportunity extends SpecificMethods {
 	
 	@BeforeTest
 	public void setExcelFileName()
