@@ -7,6 +7,7 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
@@ -69,9 +70,7 @@ public class FilesHomePageHybrid extends ProjectSpecMethods{
 		Assert.assertEquals(actualText, "Can't share file with the file owner.");
 		return this;
 	}
-	
 
-	
 	public FilesHomePageHybrid verifyLinkTextFieldIsDisabled()
 	{
 		explicitWaitStatement("xpath", "//input[@name='publicLinkURL']");
@@ -93,14 +92,16 @@ public class FilesHomePageHybrid extends ProjectSpecMethods{
 	public FilesHomePageHybrid clickUploadFiles()
 	{
 		explicitWaitStatement("xpath", "//div[@title='Upload Files']");
-		clickElement(locateElement("xpath", "//div[@title='Upload Files']"));
+		//clickElement(locateElement("xpath", "//div[@title='Upload Files']"));
+		typeText(locateElement("xpath", "//div[@title='Upload Files']"), "C:/Users/ADITHYA/fileUpload1.txt");
+		explicitWaitStatement("xpath", "//span[text()='Done']");
+		clickElement(locateElement("xpath", "//span[text()='Done']"));
 		return this;
 	}
 	
 	public FilesHomePageHybrid uploadFiles() throws AWTException
 	{
 		Robot rb = new Robot();
-		 
 	    // copying File path to Clipboard
 	    StringSelection str = new StringSelection("C:\\Users\\ADITHYA\\fileUpload1.txt");
 	    Toolkit.getDefaultToolkit().getSystemClipboard().setContents(str, null);
@@ -116,6 +117,7 @@ public class FilesHomePageHybrid extends ProjectSpecMethods{
 	    // for pressing and releasing Enter
 	    rb.keyPress(KeyEvent.VK_ENTER);
 	    rb.keyRelease(KeyEvent.VK_ENTER);
+		
 		return this;
 	}
 	

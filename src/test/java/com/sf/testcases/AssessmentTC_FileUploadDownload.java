@@ -15,7 +15,7 @@ public class AssessmentTC_FileUploadDownload extends ProjectSpecMethods {
 		new HomePage(driver).clickAppLauncher().clickServiceConsole().clickServiceControlDropdown().clickFiles().clickShowMoreActionDropdown()
 		.clickPublicLink().verifyLinkTextFieldIsDisabled().closePublicLinkWindow().clickShowMoreActionDropdown().clickDownload()
 		.clickShowMoreActionDropdown().clickShare().clickSearchPeople().selectDerrick().verifyCantShareWithOwnerMessage()
-		.closePublicLinkWindow().clickUploadFiles().uploadFiles();
+		.closePublicLinkWindow().clickUploadFiles();//uploadFiles();
 	}
 
 }

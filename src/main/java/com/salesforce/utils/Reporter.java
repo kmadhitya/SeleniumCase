@@ -51,14 +51,17 @@ public abstract class Reporter {
 	
 	public void reportStep(String step, String status)
 	{
-		long snapNumber = takeSnap();
 		MediaEntityModelProvider snap = null;
+		if (!status.equalsIgnoreCase("INFO"))
+		{
 		try
 		{
+			long snapNumber = takeSnap();
 			snap = MediaEntityBuilder.createScreenCaptureFromPath("./../../"+folder+"/"+snapNumber+".png").build();
 		}
 		catch(IOException e)
 		{}
+		}
 		if (status.equalsIgnoreCase("PASS"))
 		{
 			node.log(Status.PASS, step, snap);

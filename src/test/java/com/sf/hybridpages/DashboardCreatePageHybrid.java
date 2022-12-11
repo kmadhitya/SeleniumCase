@@ -39,7 +39,7 @@ public class DashboardCreatePageHybrid extends ProjectSpecMethods {
 	{
 		switchBackFromFrame();
 		explicitWaitStatement("xpath", prop.getProperty("DashboardCreatePage.ToastMessage.xpath"));
-		String toastText = getTheActualText(locateElement("xpath", prop.getProperty("OpportunityDetailsPage.ToastMessage.xpath")));
+		String toastText = getTheActualText(locateElement("xpath", prop.getProperty("DashboardCreatePage.ToastMessage.xpath")));
 		System.out.println("Toast message is : " + toastText);
 		Assert.assertEquals(toastText, toastExpectedText);
 		return this;
